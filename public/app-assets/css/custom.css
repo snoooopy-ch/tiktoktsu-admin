@@ -1,0 +1,23 @@
+.bg-loginned {
+	background-color: #66f7242b !important
+}
+
+td a i {
+	font-size: 16px;
+}
+
+#dropContainer, #selectContainer {
+	align-items: center !important;
+}
+
+#sales-list-pdf {
+	display: block;
+}
+
+#renderSpace {
+	width: 100%;
+}
+
+.table-hover-animation tbody tr:hover {
+	transform: none !important;
+}
