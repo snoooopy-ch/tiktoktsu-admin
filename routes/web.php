@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect()->route('home');
+    return redirect()->route('login');
 });
 Route::get('/logout', function() {
     Auth::logout();
@@ -22,8 +22,6 @@ Route::get('/logout', function() {
 })->name('logout');
 
 Auth::routes();
-
-
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/tiktok', function() {
