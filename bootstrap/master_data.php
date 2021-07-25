@@ -7,13 +7,11 @@
  */
 
 # Role Data
-define('USER_ROLE_ADMIN', 1);
-define('USER_ROLE_MANAGER', 2);
-define('USER_ROLE_SUBSCRIBER', 3);
+define('USER_ROLE_ADMIN', 'admin');
+define('USER_ROLE_SUBSCRIBER', 'writer');
 $UserRoleData = array(
-    USER_ROLE_ADMIN         => ['管理者', 'danger'],
-    USER_ROLE_MANAGER       => ['マネージャ', 'info'],
-    USER_ROLE_SUBSCRIBER	=> ['ユーザー', 'primary'],
+    USER_ROLE_ADMIN             => ['管理者', 'danger'],
+    USER_ROLE_SUBSCRIBER        => ['投稿者', 'info'],
 
 );
 
@@ -39,3 +37,4 @@ $g_masterData = array(
     'UserGenderData'        => $UserGenderData,
     'StatusData'            => $StatusData,
 );
+

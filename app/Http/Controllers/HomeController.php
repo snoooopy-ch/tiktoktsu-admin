@@ -2,20 +2,61 @@
 
 namespace App\Http\Controllers;
 
-use App\MailManager;
 use Auth;
 use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\Good;
-use App\Models\Order;
+use App\Models\TikTok;
 use Hash;
 
 class HomeController extends Controller
 {
     public function index() {
         // Send mail test
-        return view('home');
+        return view('tiktok');
     }
+
+    public function tiktokusers(Request $request) {
+        $params = $request->all();
+
+        $tbl = new TikTok();
+        $ret = $tbl->getAllForDatatable($params);
+
+        return response()->json($ret);
+    }
+
+    public function deletetiktok(Request $request, $id) {
+        $tiktokModel = new TikTok();
+        $result = $tiktokModel->deleteRecord($id);
+        return response()->json($result);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
     public function register() {
         // Send mail test
@@ -84,7 +125,7 @@ class HomeController extends Controller
             }
         }
 
-        $orderModel = new Order();
+        $tiktokModel = new Order();
 
         foreach($orders as $index => $tmp) {
             $order = explode(',', $tmp);
@@ -98,7 +139,7 @@ class HomeController extends Controller
 
             $goodInfo = $goodModel->getRecordInfoByGoodCode($goodCode);
             
-            $ret = $orderModel->insertRecord(array(
+            $ret = $tiktokModel->insertRecord(array(
                 'order_date'            => $saleDate,
                 'good_code'             => $goodCode,
                 'order_count'           => $goodCount,
@@ -128,31 +169,21 @@ class HomeController extends Controller
         return response()->json($ret);
     }
 
-    public function getorder(Request $request, $id) {
-        $orderModel = new Order();
+    
 
-        $result = $orderModel->getRecordInfoById($id);
-        return response()->json($result);
-    }
-
-    public function deleteorder(Request $request, $id) {
-        $orderModel = new Order();
-
-        $result = $orderModel->deleteRecord($id);
-        return response()->json($result);
-    }
+    
 
     public function deleteorders(Request $request) {
         $selected = $request->get('content');
-        $orderModel = new Order();
-        $result = $orderModel->deleteRecords($selected);
+        $tiktokModel = new Order();
+        $result = $tiktokModel->deleteRecords($selected);
         return;
     }
 
     public function modifyorder(Request $request, $id) {
         $order = $request->get('content');
-        $orderModel = new Order();
-        $result = $orderModel->updateRecordById($id, array(
+        $tiktokModel = new Order();
+        $result = $tiktokModel->updateRecordById($id, array(
             'order_date'         => $order['order_date'],
             'good_code'         => $order['good_code'],
             'order_count'        => $order['order_count'],
@@ -163,9 +194,9 @@ class HomeController extends Controller
 
     public function deletesales(Request $request) {
         $selected = $request->get('content');
-        $orderModel = new Order();
+        $tiktokModel = new Order();
 
-        $result = $orderModel->deleteRecords($selected);
+        $result = $tiktokModel->deleteRecords($selected);
         return response()->json($result);
     }
 }

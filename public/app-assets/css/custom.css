@@ -21,3 +21,7 @@ td a i {
 .table-hover-animation tbody tr:hover {
 	transform: none !important;
 }
+
+.ck.ck-editor__editable_inline>:last-child {
+	min-height: 200px !important;
+}

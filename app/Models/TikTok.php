@@ -11,12 +11,11 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class Order extends Authenticatable
+class TikTok extends Authenticatable
 {
     use Notifiable;
 	protected $connection = 'mysql';
-    protected $table = 'tbl_order';
-    protected $customerTable = 'tbl_user';
+    protected $table = 'tbl_user';
     /**
      * The attributes that are mass assignable.
      *
@@ -42,6 +41,92 @@ class Order extends Authenticatable
      */
     protected $casts = [
     ];
+
+    public function getAllForDatatable($params) {
+        $selector = DB::table($this->table);
+
+        // filtering
+        $totalCount = $selector->count();
+
+        if (isset($params['columns'][1]['search']['value'])
+            && $params['columns'][1]['search']['value'] !== ''
+        ) {
+            $selector->where('tiktok_id', 'like', '%' . $params['columns'][1]['search']['value'] . '%');
+        }
+        if (isset($params['columns'][3]['search']['value'])
+            && $params['columns'][3]['search']['value'] !== ''
+        ) {
+            $selector->where('uniqueId', 'like', '%' . $params['columns'][3]['search']['value'] . '%');
+        }
+        
+
+        $selector->select($this->table . '.*');
+
+        // number of filtered records
+        $recordsFiltered = $selector->count();
+
+        // sort
+        foreach ($params['order'] as $order) {
+            $field = $params['columns'][$order['column']]['data'];
+            $selector->orderBy($field, $order['dir']);
+        }
+
+        // offset & limit
+        if (!empty($params['start']) && $params['start'] > 0) {
+            $selector->skip($params['start']);
+        }
+
+        if (!empty($params['length']) && $params['length'] > 0) {
+            $selector->take($params['length']);
+        }
+
+        // get records
+        $records = $selector->get();
+
+        return [
+            'draw' => $params['draw']+0,
+            'recordsTotal' => $totalCount,
+            'recordsFiltered' => $recordsFiltered,
+            'data' => $records,
+            'error' => 0,
+        ];
+    }
+
+    public function deleteRecord($id) {
+        $records = DB::table($this->table)
+            ->where('id', $id)
+            ->delete();
+        
+        return [
+            'error' => 0,
+            'detail' => null,
+        ];
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public function getRecordByGoodCode($good_code) {
         $records = DB::connection($this->connection)
@@ -75,17 +160,7 @@ class Order extends Authenticatable
         return $records[0];
     }
 
-    public function deleteRecord($id) {
-        $records = DB::connection($this->connection)
-            ->table($this->table)
-            ->where('id', $id)
-            ->delete();
-        
-        return [
-            'error' => 0,
-            'detail' => null,
-        ];
-    }
+    
 
     public function deleteRecords($selected) {
         $records = DB::connection($this->connection)
@@ -123,61 +198,7 @@ class Order extends Authenticatable
         return $result;
     }
 
-    public function getAllForDatatable($params) {
-        $selector = DB::table($this->table);
-
-        // filtering
-        $totalCount = $selector->count();
-
-        if (isset($params['columns'][3]['search']['value'])
-            && $params['columns'][3]['search']['value'] !== ''
-        ) {
-            $selector->where('good_code', 'like', '%' . $params['columns'][3]['search']['value'] . '%');
-        }
-        if (isset($params['columns'][2]['search']['value'])
-            && $params['columns'][2]['search']['value'] !== ''
-        ) {
-            $amountRange = preg_replace('/[\$\,]/', '', $params['columns'][2]['search']['value']);
-            $elements = explode(':', $amountRange);
-
-            if ($elements[0] != "" || $elements[1] != "") {
-                $elements[0] .= ' 00:00:00';
-                $elements[1] .= ' 23:59:59';
-                $selector->whereBetween($this->table . '.order_date', $elements);
-            }
-        }
-
-        $selector->select($this->table . '.*');
-
-        // number of filtered records
-        $recordsFiltered = $selector->count();
-
-        // sort
-        foreach ($params['order'] as $order) {
-            $field = $params['columns'][$order['column']]['data'];
-            $selector->orderBy($field, $order['dir']);
-        }
-
-        // offset & limit
-        if (!empty($params['start']) && $params['start'] > 0) {
-            $selector->skip($params['start']);
-        }
-
-        if (!empty($params['length']) && $params['length'] > 0) {
-            $selector->take($params['length']);
-        }
-
-        // get records
-        $records = $selector->get();
-
-        return [
-            'draw' => $params['draw']+0,
-            'recordsTotal' => $totalCount,
-            'recordsFiltered' => $recordsFiltered,
-            'data' => $records,
-            'error' => 0,
-        ];
-    }
+    
 
     public function getAllSalesForDatatable($params) {
         

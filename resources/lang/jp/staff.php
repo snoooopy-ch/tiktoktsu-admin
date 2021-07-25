@@ -25,6 +25,7 @@ return [
 		'updated'	=> '更新日時',
 		'password'	=> 'パスワード',
 		'pass_conf'	=> 'パスワード再確認',
+		'role'		=> '権限',
 	],
 
 	'message'		=>	[

@@ -11,32 +11,22 @@ class StaffController extends Controller
 {
     public function index() {
         $user = Auth::user();
-        if ($user->role != USER_ROLE_ADMIN) {
+        if (!$user->hasRole('admin')) {
             return redirect()->back();
         }
 
-        $tbl = new User();
-        $users = $tbl->getAll();
-
-        return view('staff.list', [
-            'users'     => $users,
-        ]);
+        return view('staff.list');
     }
 
     public function add()
     {
-        $tbl = new User();
-        $users = $tbl->getAll();
-
         $user = Auth::user();
-        if ($user->role != USER_ROLE_ADMIN)
+        if (!$user->hasRole('admin'))
         {
             return redirect()->back();
         }
 
-        return view('staff.add', [
-            'users'     => $users,
-        ]);
+        return view('staff.add');
     }
 
     public function edit(Request $request)
@@ -78,23 +68,18 @@ class StaffController extends Controller
     public function post_add(Request $request)
     {
         $user = Auth::user();
-        if ($user->role != USER_ROLE_ADMIN)
+        if (!$user->hasRole('admin'))
         {
             return redirect()->back();
         }
 
         $this->validate($request, [
-            'login_id'      => 'required|max:64|unique:ea_staff',
-            'name'          => 'required|max:64',
+            'user_login'    => 'required|max:64|unique:tbl_admin',
             'password'      => 'required|min:6|max:255|confirmed',
-            'role'          => 'required',
-            'auth_token'    => 'required',
         ]);
 
-        $record = $request->only('login_id', 'name', 'password', 'email', 'role', 'auth_token');
+        $record = $request->only('user_login', 'password', 'customCheck');
         $record['password'] = bcrypt($record['password']);
-        $record['avatar'] = 'none.png';
-        $record['status'] = STATUS_ACTIVE;
 
         $tbl = new User();
         $tbl->createRecord($record);
@@ -141,7 +126,7 @@ class StaffController extends Controller
     public function ajax_search(Request $request)
     {
         $user = Auth::user();
-        if ($user->role != USER_ROLE_ADMIN)
+        if (!$user->hasRole('admin'))
         {
             return redirect()->back();
         }
@@ -157,7 +142,7 @@ class StaffController extends Controller
     public function ajax_delete(Request $request)
     {
         $user = Auth::user();
-        if ($user->role != USER_ROLE_ADMIN)
+        if (!$user->hasRole('admin'))
         {
             return redirect()->back();
         }

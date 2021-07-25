@@ -19,22 +19,15 @@ return [
 	],
 
 	'sidebar'	=> [
-		'home'				=> '受注管理',
-		'home_view'			=> '受注閲覧',
-		'home_register'		=> '受注登録',
-		'good'				=> '商品管理',
-		'good_view'			=> '商品閲覧',
-		'good_register'		=> '商品登録',
-		'sale'				=> '振込データダウンロード',
-		'user'				=> 'ユーザー管理',
-		'user_view'			=> 'ユーザー閲覧',
-		'user_register'		=> 'ユーザー登録',
-		'useraccount'	=> 'ユーザー口座登録',
-		'staff'			=> '管理者',
-		'users'			=> '取引者一覧',
-		'signals'		=> 'シグナル',
-		'db'			=> 'データベース',
+		'tiktok'			=> 'TikTok管理',
+		'news'				=> 'ニュース管理',
+		'news_view'			=> 'ニュース閲覧',
+		'news_post'			=> 'ニュース投稿',
+		'staff'				=> 'スタッフ管理',
+		'password'			=> '管理者パスワード',
 	],
+
+
 
 	'search'	=> [
 		'filters'		=> '検索',

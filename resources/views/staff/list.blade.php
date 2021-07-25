@@ -8,10 +8,12 @@
 @endsection
 
 @section('contents')
+    <?php global $UserRoleData; ?>
+
     <!-- users list start -->
     <section class="users-list-wrapper">
         <!-- users filter start -->
-        <div class="card">
+        <div class="card d-none">
             <div class="card-header">
                 <h4 class="card-title">{{ trans('ui.search.filters') }}</h4>
                 <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
@@ -23,11 +25,13 @@
                             <div class="row">
                                 <div class="col-md">
                                     <label class="form-label">{{ trans('staff.table.login_id') }}</label>
-                                    <input type="text" id="filter-login_id" class="form-control" placeholder="{{ trans('ui.search.any') }}">
+                                    <input type="text" id="filter-login_id" class="form-control"
+                                        placeholder="{{ trans('ui.search.any') }}">
                                 </div>
                                 <div class="col-md">
                                     <label class="form-label">{{ trans('staff.table.name') }}</label>
-                                    <input type="text" id="filter-name" class="form-control" placeholder="{{ trans('ui.search.any') }}">
+                                    <input type="text" id="filter-name" class="form-control"
+                                        placeholder="{{ trans('ui.search.any') }}">
                                 </div>
                                 <div class="col-md">
                                     <label class="form-label">{{ trans('staff.table.role') }}</label>
@@ -49,7 +53,8 @@
                                 </div>
                                 <div class="col-md">
                                     <label class="form-label">{{ trans('staff.table.reged_at') }}</label>
-                                    <input type="text" id="filter-date" class="form-control" placeholder="{{ trans('ui.search.any') }}">
+                                    <input type="text" id="filter-date" class="form-control"
+                                        placeholder="{{ trans('ui.search.any') }}">
                                 </div>
                                 <div class="col-md col-xl-2">
                                     <label class="form-label">&nbsp;</label>
@@ -68,11 +73,17 @@
         <input type="hidden" id="edit-caption" value="{{ trans('ui.button.edit') }}">
         <input type="hidden" id="delete-caption" value="{{ trans('ui.button.delete') }}">
         <?php
-            echo '<script>';
-            echo 'var UserGenderData = ' . json_encode(g_enum('UserGenderData')) . ';';
-            echo 'var UserRoleData = ' . json_encode(g_enum('UserRoleData')) . ';';
-            echo 'var StatusData = ' . json_encode(g_enum('StatusData')) . ';';
-            echo '</script>';
+        echo '<script>
+            ';
+            echo 'var UserGenderData = '.json_encode(g_enum('UserGenderData')).
+            ';';
+            echo 'var UserRoleData = '.json_encode(g_enum('UserRoleData')).
+            ';';
+            echo 'var StatusData = '.json_encode(g_enum('StatusData')).
+            ';';
+            echo '
+
+        </script>';
         ?>
 
         @if ($message = Session::get('flash_message'))
@@ -98,16 +109,12 @@
                     <div class="table-responsive">
                         <table id="staff-list" class="table">
                             <thead>
-                            <tr>
-                                <th>{{ trans('staff.table.no') }}</th>
-                                <th>{{ trans('staff.table.login_id') }}</th>
-                                <th>{{ trans('staff.table.name') }}</th>
-                                <th>{{ trans('staff.table.email') }}</th>
-                                <th>{{ trans('staff.table.role') }}</th>
-                                <th>{{ trans('staff.table.auth_token') }}</th>
-                                <th>{{ trans('staff.table.status') }}</th>
-                                <th>{{ trans('staff.table.actions') }}</th>
-                            </tr>
+                                <tr>
+                                    <th>{{ trans('staff.table.no') }}</th>
+                                    <th>{{ trans('staff.table.login_id') }}</th>
+                                    <th>{{ trans('staff.table.role') }}</th>
+                                    <th>{{ trans('staff.table.actions') }}</th>
+                                </tr>
                             </thead>
                             <tbody class="text-center">
                             </tbody>
@@ -125,9 +132,38 @@
     <script src="{{ cAsset('vendor/moment/moment.js') }}"></script>
     <script src="{{ cAsset('vendor/datatables/datatables.js') }}"></script>
     <script src="{{ cAsset('vendor/daterangepicker/daterangepicker.min.js') }}"></script>
-    <script src="{{ cAsset("js/staff-list.js") }}"></script>
+    <script src="{{ cAsset('js/staff-list.js') }}"></script>
 
     <script>
+        var UserRoleData = @json($UserRoleData);
+
+        function addButtonClick() {
+            $('#modal_default').modal('show');
+        }
+
+        $('#confirm_agree').click(function(e) {
+            $.get({
+                url: BASE_URL + 'api/addstaff/',
+                data: {
+                    content: {
+                        user_login: $('#modal_user_login').val(),
+                        password: $('#modal_user_password').val(),
+                        password_confirm: $('#modal_user_password_confirm').val(),
+                        role: $('#')
+                    }
+                },
+                success: function(result) {
+                    location.reload();
+                },
+                error: function(result) {
+
+                }
+            });
+            $('#modal_default').modal('hide');
+            e.stopImmediatePropagation();
+            e.preventDefault();
+        });
+
         function deleteStaff(id) {
             bootbox.confirm({
                 message: "{{ trans('ui.alert.ask_delete') }}",
@@ -149,17 +185,15 @@
                                 'id': id,
                             },
                             success: function(result) {
+                                listTable.ajax.reload();
                                 if (result < 0) {
                                     bootbox.alert("{{ trans('ui.alert.delete_failed') }}");
-                                }
-                                else if (result == 0) {
+                                } else if (result == 0) {
                                     bootbox.alert("{{ trans('ui.alert.delete_admin') }}");
-                                }
-                                else if (result == 1) {
-                                    listTable.ajax.reload();
                                 }
                             },
                             error: function(err) {
+                                listTable.ajax.reload();
                                 bootbox.alert("{{ trans('ui.alert.delete_failed') }}");
                             }
                         });
@@ -167,5 +201,86 @@
                 }
             });
         }
+
+        listTable = $('#staff-list').DataTable({
+            processing: true,
+            serverSide: true,
+            searching: true,
+            language: {
+                emptyTable: "{{ trans('app.datatable.language.emptyTable') }}",
+                info: "{{ trans('app.datatable.language.info') }}",
+                infoEmpty: "{{ trans('app.datatable.language.infoEmpty') }}",
+                infoFiltered: "{{ trans('app.datatable.language.infoFiltered') }}",
+                infoThousands: "{{ trans('app.datatable.language.infoThousands') }}",
+                lengthMenu: "{{ trans('app.datatable.language.lengthMenu') }}",
+                loadingRecords: "{{ trans('app.datatable.language.loadingRecords') }}",
+                processing: "{{ trans('app.datatable.language.processing') }}",
+                search: "{{ trans('app.datatable.language.search') }}",
+                zeroRecords: "{{ trans('app.datatable.language.zeroRecords') }}",
+                paginate: {
+                    first: "{{ trans('app.datatable.language.paginate.first') }}",
+                    last: "{{ trans('app.datatable.language.paginate.last') }}",
+                    next: "{{ trans('app.datatable.language.paginate.next') }}",
+                    previous: "{{ trans('app.datatable.language.paginate.previous') }}",
+                },
+                aria: {
+                    sortAscending: "{{ trans('app.datatable.language.aria.sortAscending') }}",
+                    sortDescending: "{{ trans('app.datatable.language.aria.sortDescending') }}",
+                }
+            },
+            ajax: {
+                url: BASE_URL + 'ajax/staff/search',
+                type: 'POST',
+            },
+            columnDefs: [{
+                targets: [1],
+                orderable: false,
+                searchable: false
+            }],
+            columns: [{
+                    data: 'id',
+                    className: "text-center"
+                },
+                {
+                    data: 'user_login',
+                    className: "text-center"
+                },
+                {
+                    data: 'role',
+                    className: "text-center"
+                },
+                {
+                    data: null,
+                    className: "text-center"
+                },
+            ],
+            createdRow: function(row, data, index) {
+                var pageInfo = listTable.page.info();
+
+                // *********************************************************************
+                // Index
+                $('td', row).eq(0).html('').append(
+                    '<span>' + (pageInfo.page * pageInfo.length + index + 1) + '</span>'
+                );
+
+                let role = [];
+                if (data['role'] != null) {
+                    $.each(data['role'].split(','), function(index, value) {
+                        role.push(UserRoleData[value][0]);
+                    });
+                } else {
+                    role = [];
+                }
+
+                $('td', row).eq(2).html('').append(role.join(', '));
+
+                $('td', row).eq(3).html('').append(
+                    '<a class="btn btn-icon btn-icon-rounded-circle text-danger btn-flat-danger user-tooltip" onclick="deleteStaff(' +
+                    data["id"] + ')" title="' + $('#delete-caption').val() + '">' +
+                    '<i class="fa fa-remove"></i></a>'
+                );
+            },
+        });
+
     </script>
 @endsection

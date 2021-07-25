@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\MailManager;
 use Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -30,7 +29,7 @@ class AdminController extends Controller
             'password'          => Hash::make($request->password),
         ]);
 
-        return redirect()->route('admin')
+        return redirect()->route('password')
             ->with('flash_message', 'パスワードが変更されました');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -32,6 +32,9 @@ class UserSeeder extends Seeder
                 'user_login'    => $this->admin_id,
                 'password'      => bcrypt($this->admin_pass),
             ]);
+
+        // $user = User::findOrFail(3);
+        // $user->assignRole(['admin', 'writer']);
 
         print_r("UserSeeder has finished!\n");
     }

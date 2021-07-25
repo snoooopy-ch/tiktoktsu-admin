@@ -42,4 +42,74 @@ class User extends Authenticatable
     protected $casts = [
     ];
 
+
+    public function getForDatatable($params) {
+        $selector = DB::table($this->table)
+            ->leftJoin('model_has_roles', 'model_has_roles.model_id', '=', $this->table . '.id')
+            ->leftJoin('roles', 'roles.id', '=', 'model_has_roles.role_id')
+            ->groupBy($this->table . '.id');
+
+        // filtering
+        $totalCount = $selector->count();
+
+        $selector->select(DB::raw($this->table . '.*, group_concat(roles.name) as role'));
+
+        // number of filtered records
+        $recordsFiltered = $selector->count();
+
+        // sort
+        foreach ($params['order'] as $order) {
+            $field = $params['columns'][$order['column']]['data'];
+            $selector->orderBy($field, $order['dir']);
+        }
+
+        // offset & limit
+        if (!empty($params['start']) && $params['start'] > 0) {
+            $selector->skip($params['start']);
+        }
+
+        if (!empty($params['length']) && $params['length'] > 0) {
+            $selector->take($params['length']);
+        }
+
+        // get records
+        $records = $selector->get();
+
+        return [
+            'draw' => $params['draw']+0,
+            'recordsTotal' => $totalCount,
+            'recordsFiltered' => $recordsFiltered,
+            'data' => $records,
+            'error' => 0,
+        ];
+    }
+
+    public function createRecord($params) {
+        $id = DB::table($this->table)
+            ->insertGetId([
+                'user_login'    => $params['user_login'],
+                'password'      => $params['password']
+            ]);
+
+        if (isset($params['customCheck']) && !empty($params['customCheck'])) {
+            foreach ($params['customCheck'] as $role) {
+                $user = User::findOrFail($id);
+                $user->assignRole($role);
+            }
+        }
+        return;
+    }
+
+    public function deleteRecordById($id) {
+        $records = DB::connection($this->connection)
+            ->table($this->table)
+            ->where('id', $id)
+            ->delete();
+        
+        return [
+            'error' => 0,
+            'detail' => null,
+        ];
+    }
+
 }
