@@ -25,3 +25,33 @@ td a i {
 .ck.ck-editor__editable_inline>:last-child {
 	min-height: 200px !important;
 }
+
+.horizontal-menu .header-navbar.navbar-fixed {
+	width: 1000px;
+}
+
+.horizontal-menu .horizontal-menu-wrapper {
+	width: 1000px;
+}
+
+.container1000 {
+	width: 1000px; margin: 0 auto;
+}
+
+.horizontal-menu .header-navbar.navbar-horizontal.floating-nav {
+	width: 1000px;
+}
+
+.horizontal-menu.navbar-floating .horizontal-menu-wrapper .navbar-horizontal.floating-nav {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+.header-navbar.floating-nav {
+	right: unset;
+}
+
+.navbar-container .search-input.open {
+	left: unset;
+	width: 300px;
+}

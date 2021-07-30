@@ -4,18 +4,24 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Illuminate\Http\Request;
-use App\Models\Customer;
-use App\Models\Good;
 use App\Models\TikTok;
 use Hash;
 
-class HomeController extends Controller
+class DashboardController extends Controller
 {
     public function index() {
-        return view('tiktok');
+        $tiktok = TikTok::all();
+        $ids = array();
+
+        foreach($tiktok as $index => $value) {
+            $ids[] = $value->uniqueId;
+        }
+        return view('frontpage.home', [
+            'search-ids' => $ids,
+        ]);
     }
 
-    public function tiktokusers(Request $request) {
+    public function getUsersInFrontPage(Request $request) {
         $params = $request->all();
 
         $tbl = new TikTok();

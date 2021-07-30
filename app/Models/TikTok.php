@@ -68,7 +68,9 @@ class TikTok extends Authenticatable
         // sort
         foreach ($params['order'] as $order) {
             $field = $params['columns'][$order['column']]['data'];
-            $selector->orderBy($field, $order['dir']);
+
+            if ($field != null) 
+                $selector->orderBy($field, $order['dir']);
         }
 
         // offset & limit

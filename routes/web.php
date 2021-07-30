@@ -12,10 +12,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', 'DashboardController@index')->name('dashboard');
+Route::post('api/front/getusers', 'DashboardController@getUsersInFrontPage');
 
-Route::get('/', function () {
-    return redirect()->route('login');
-});
 Route::get('/logout', function() {
     Auth::logout();
     return redirect()->route('login');
@@ -25,10 +24,10 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/tiktok', function() {
-        return redirect()->route('tiktok.view');
+        return redirect()->route('dashboard');
     })->name('tiktok');
 
-    Route::get('/tiktok/view', 'HomeController@index')->name('tiktok.view');
+    Route::get('/dashboard', 'HomeController@index')->name('dashboard');
     Route::post('/api/tiktokusers', 'HomeController@tiktokusers');
     Route::get('api/deletetiktok/{id}', 'HomeController@deletetiktok');
 
@@ -65,7 +64,6 @@ Route::group(['middleware' => 'auth'], function () {
     // Route::get('/api/modifyorder/{id}', 'HomeController@modifyorder');
     // Route::get('/api/deleteorders', 'HomeController@deleteorders');
     
-
     // Route::get('/goods/view', 'GoodsController@index')->name('goods.view');
     // Route::get('/goods/register', 'GoodsController@register')->name('goods.register');
     // Route::post('/api/addgoods', 'GoodsController@addGoods');
@@ -81,7 +79,6 @@ Route::group(['middleware' => 'auth'], function () {
     // Route::get('/sales/csvdownload', 'SalesController@csv_download')->name('sales.csvdownload');
     // Route::get('/sales/pdfdownload', 'SalesController@pdf_download')->name('sales.pdfdownload');
     
-
     // Route::get('/users/view', 'CustomersController@index')->name('users.view');
     // Route::get('/users/register', 'CustomersController@register')->name('users.register');
     // Route::post('/api/addusers', 'CustomersController@addUsers');
@@ -90,7 +87,6 @@ Route::group(['middleware' => 'auth'], function () {
     // Route::get('/api/deleteuser/{id}', 'CustomersController@deleteuser');
     // Route::get('/api/modifyuser/{id}', 'CustomersController@modifyuser');
     // Route::get('/api/deleteusers', 'CustomersController@deleteusers');
-
 
     // # Staff
     // Route::get('/staff', 'StaffController@index')->name('staff');
@@ -109,6 +105,5 @@ Route::group(['middleware' => 'auth'], function () {
     // Route::get('/db', 'DBController@index')->name('db');
     // Route::get('/db/download', 'DBController@download')->name('db.download');
     // Route::post('/db/upload', 'DBController@upload')->name('db.upload');
-
     
 });

@@ -163,7 +163,7 @@
                     '<span>' + (pageInfo.page * pageInfo.length + index + 1) + '</span>'
                 );
                 $('td', row).eq(2).html('').append(
-                    '<img src="' + data['avatar'] + '"/>'
+                    '<img src="' + data['avatar'] + '" width="100"/>'
                 );
 
                 $('td', row).eq(10).html('').append(
