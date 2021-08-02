@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', 'DashboardController@index')->name('dashboard');
+Route::get('/', 'DashboardController@index');
 Route::post('api/front/getusers', 'DashboardController@getUsersInFrontPage');
 
 Route::get('/logout', function() {
@@ -24,10 +24,10 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/tiktok', function() {
-        return redirect()->route('dashboard');
+        return redirect()->route('home');
     })->name('tiktok');
 
-    Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+    Route::get('/home', 'HomeController@index')->name('home');
     Route::post('/api/tiktokusers', 'HomeController@tiktokusers');
     Route::get('api/deletetiktok/{id}', 'HomeController@deletetiktok');
 
