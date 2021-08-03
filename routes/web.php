@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', 'DashboardController@index');
+Route::get('/', 'DashboardController@index')->name('dashboard');
 Route::post('api/front/getusers', 'DashboardController@getUsersInFrontPage');
 
 Route::get('/logout', function() {

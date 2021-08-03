@@ -35,5 +35,4 @@ class DashboardController extends Controller
         $result = $tiktokModel->deleteRecord($id);
         return response()->json($result);
     }
-
 }
