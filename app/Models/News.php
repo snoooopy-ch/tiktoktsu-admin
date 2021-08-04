@@ -6,10 +6,12 @@ use DB;
 use Auth;
 use Response;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 
 class News extends Model
 {
+    use HasFactory;
     use Notifiable;
 	protected $connection = 'mysql';
     protected $table = 'tbl_news';
@@ -106,4 +108,54 @@ class News extends Model
 
         return $ret;
     }
+
+    public function famouseNews() {
+        $records = DB::table($this->table)
+            ->orderBy('read', 'desc')
+            ->take(5)
+            ->get();
+        
+        if (!isset($records) || count($records) == 0) {
+            return [];
+        }
+    
+        foreach($records  as $index => $item) {
+            preg_match('/(<)([img])(\w+)([^>]*>)/', $item->content, $match);
+            if (count($match) != 0) {
+                $image = $match[0];
+                $array = array();
+                preg_match('/<img[^>]* src=\"([^\"]*)\"[^>]*>/', $image, $array );
+                $item->thumb = $array[1];
+            }
+            else {
+                $item->thumb = '';
+            } 
+
+            $item->content = preg_replace('/(<)([img])(\w+)([^>]*>)/', '', $item->content); 
+            preg_match('/^(.*)$/m', $item->content, $match);
+            $item->content = $match[0];
+
+            preg_match('/^(.*)$/m', $item->title, $match);
+            $item->title = $match[0];
+        }
+
+        return $records;
+    }
+
+    public function increaseReadAndGet($id) {
+        DB::table($this->table)
+            ->where('id', $id)
+            ->increment('read', 1);
+        $records = DB::table($this->table)
+            ->where('id', $id)
+            ->select('*')
+            ->get();
+
+        if (!isset($records) || count($records) == 0)
+            return [];
+        
+        return $records[0];
+    }
+
+    
 }

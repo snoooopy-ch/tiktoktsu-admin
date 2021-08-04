@@ -57,3 +57,23 @@ td a i {
 	width: 300px;
 }
 
+.news-item p {
+	margin: 0;
+}
+
+.topnews-item p {
+	margin: 0;
+}
+
+.news-detail img {
+	width: 100% !important;
+	height: auto !important;
+}
+
+.sidebar-title, .sidebar-content, .news-list-title {
+	overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    word-break: break-all;
+}

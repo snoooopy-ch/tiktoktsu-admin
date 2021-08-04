@@ -82,8 +82,8 @@
                 <div class="navbar-container content">
                     <div class="navbar-collapse justify-content-end" id="navbar-mobile">
                         <div class="mr-auto float-left bookmark-wrapper d-flex align-items-center">
-                            <a class="nav navbar-nav"><img src="{{ cAsset('images/customer_1627208365.png') }}"
-                                    width="50" /></a>
+                            <a class="nav navbar-nav" href="{{ route('dashboard') }}"><img
+                                    src="{{ cAsset('images/customer_1627208365.png') }}" width="50" /></a>
                             <ul class="nav navbar-nav d-lg-none">
                                 <li class="nav-item mobile-menu d-xl-none mr-auto"><a
                                         class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i
@@ -451,8 +451,9 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item" data-menu=""><a class="dropdown-toggle nav-link" href="#" data-toggle=""><i
-                                    class="icon-file-text"></i><span data-i18n="Apps">ニュース</span></a>
+                        <li class="nav-item" data-menu=""><a class="nav-link" href="{{ route('posts') }}"
+                                data-toggle=""><i class="feather icon-file-text"></i><span
+                                    data-i18n="Apps">ニュース</span></a>
                         </li>
                     </ul>
                 </div>

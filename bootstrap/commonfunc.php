@@ -750,3 +750,4 @@ function base64_encode_url($string) {
 function base64_decode_url($string) {
     return base64_decode(str_replace(['-','_'], ['+','/'], $string));
 }
+

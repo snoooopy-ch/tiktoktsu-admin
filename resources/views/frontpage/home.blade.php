@@ -81,9 +81,9 @@
 
                 $('td', row).eq(2).html('').append(
                     '<span>' + data['uniqueId'] + '</span><br>' +
-                    '<i class="feather icon-heart"></i><span>' + data['heart'] + '</span><br>' +
-                    '<i class="feather icon-users"></i><span>' + data['follercount'] + '</span><br>' +
-                    '<i class="feather icon-tv"></i><span>' + data['videocount'] + '</span>'
+                    '<i class="feather icon-heart"></i><span>&nbsp;' + data['heart'] + '</span><br>' +
+                    '<i class="feather icon-users"></i><span>&nbsp;' + data['follercount'] + '</span><br>' +
+                    '<i class="feather icon-tv"></i><span>&nbsp;' + data['videocount'] + '</span>'
                 );
 
             },

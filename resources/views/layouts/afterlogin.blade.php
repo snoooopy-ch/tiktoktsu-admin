@@ -11,7 +11,7 @@
     <meta name="keywords"
         content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>{{ env('APP_NAME') }}&nbsp;|&nbsp;@yield('title')</title>
+    <title>{{ env('APP_NAME') }}&nbsp;Admin|&nbsp;@yield('title')</title>
     <link rel="apple-touch-icon" href="{{ cAsset('app-assets/images/ico/apple-icon-120.png') }}">
     <link rel="shortcut icon" type="image/x-icon" href="{{ cAsset('favicon.png') }}">
 
@@ -122,7 +122,7 @@
                 <li
                     class="nav-item has-sub {{ strpos($routeName, 'news') === 0 ? 'sidebar-group-active open' : '' }}">
                     <a href="">
-                        <i class="icon-file-text"></i>
+                        <i class="feather icon-file-text"></i>
                         <span class="menu-title" data-i18n="">{{ trans('ui.sidebar.news') }}</span>
                     </a>
                     <ul class="menu-content" style="">
