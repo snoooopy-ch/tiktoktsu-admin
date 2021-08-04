@@ -77,7 +77,7 @@
                                         class="ficon feather icon-menu"></i></a></li>
                         </ul>
                     </div>
-                    <ul class="nav navbar-nav float-right">
+                    <ul class="  d-none">
                         <li class="dropdown dropdown-user nav-item">
                             <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
                                 <div class="user-nav d-sm-flex d-none">
@@ -116,13 +116,13 @@
         <div class="main-menu-content">
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
                 <li class=" nav-item {{ strpos($routeName, 'tiktok') === 0 ? 'active' : '' }}">
-                    <a href="{{ route('tiktok') }}"><i class="feather icon-unlock"></i><span class="menu-title"
+                    <a href="{{ route('tiktok') }}"><i class="feather icon-activity"></i><span class="menu-title"
                             data-i18n="Users">{{ trans('ui.sidebar.tiktok') }}</span></a>
                 </li>
                 <li
                     class="nav-item has-sub {{ strpos($routeName, 'news') === 0 ? 'sidebar-group-active open' : '' }}">
                     <a href="">
-                        <i class="feather icon-shopping-cart"></i>
+                        <i class="icon-file-text"></i>
                         <span class="menu-title" data-i18n="">{{ trans('ui.sidebar.news') }}</span>
                     </a>
                     <ul class="menu-content" style="">
@@ -142,12 +142,12 @@
                 </li>
 
                 <li class=" nav-item {{ strpos($routeName, 'staff') === 0 ? 'active' : '' }}">
-                    <a href="{{ route('staff') }}"><i class="feather icon-database"></i><span class="menu-title"
+                    <a href="{{ route('staff') }}"><i class="fa fa-user-secret"></i><span class="menu-title"
                             data-i18n="Users">{{ trans('ui.sidebar.staff') }}</span></a>
                 </li>
 
                 <li class=" nav-item {{ strpos($routeName, 'password') === 0 ? 'active' : '' }}">
-                    <a href="{{ route('password') }}"><i class="feather icon-unlock"></i><span class="menu-title"
+                    <a href="{{ route('password') }}"><i class="fa fa-key"></i><span class="menu-title"
                             data-i18n="Users">{{ trans('ui.sidebar.password') }}</span></a>
                 </li>
             </ul>

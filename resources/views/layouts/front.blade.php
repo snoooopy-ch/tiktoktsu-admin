@@ -116,7 +116,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <ul class="nav navbar-nav float-right">
+                        <ul class="nav navbar-nav float-right d-none">
                             <li class="dropdown dropdown-language nav-item d-lg-none"><a
                                     class="dropdown-toggle nav-link" id="dropdown-flag" href="#" data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false"><i
@@ -377,82 +377,82 @@
                             <ul class="dropdown-menu">
                                 <li class="active" data-menu=""><a class="dropdown-item" href="dashboard-analytics.html"
                                         data-toggle="dropdown" data-i18n="Analytics"><i
-                                            class="feather icon-activity"></i>フォロワー数</a>
+                                            class="feather icon-heart"></i>フォロワー数</a>
                                 </li>
                                 <li data-menu=""><a class="dropdown-item" href="dashboard-ecommerce.html"
                                         data-toggle="dropdown" data-i18n="eCommerce"><i
-                                            class="feather icon-shopping-cart"></i>いいね数</a>
+                                            class="icon-thumbs-up"></i>いいね数</a>
                                 </li>
                                 <li class="" data-menu=""><a class="dropdown-item" href="dashboard-analytics.html"
                                         data-toggle="dropdown" data-i18n="Analytics"><i
-                                            class="feather icon-activity"></i>コメント数</a>
+                                            class="feather icon-message-circle"></i>コメント数</a>
                                 </li>
                                 <li data-menu=""><a class="dropdown-item" href="dashboard-ecommerce.html"
                                         data-toggle="dropdown" data-i18n="eCommerce"><i
-                                            class="feather icon-shopping-cart"></i>シェア数</a>
+                                            class="feather icon-share"></i>シェア数</a>
                                 </li>
                                 <li data-menu=""><a class="dropdown-item" href="dashboard-ecommerce.html"
                                         data-toggle="dropdown" data-i18n="eCommerce"><i
-                                            class="feather icon-shopping-cart"></i>楽曲数</a>
+                                            class="feather icon-film"></i>楽曲数</a>
                                 </li>
                             </ul>
                         </li>
                         <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#"
-                                data-toggle="dropdown"><i class="feather icon-package"></i><span
+                                data-toggle="dropdown"><i class="feather icon-message-circle"></i><span
                                     data-i18n="Apps">総コメント数</span></a>
                             <ul class="dropdown-menu">
                                 <li data-menu=""><a class="dropdown-item" href="app-email.html" data-toggle="dropdown"
-                                        data-i18n="Email"><i class="feather icon-mail"></i>週間ランキング</a>
+                                        data-i18n="Email"><i class="feather icon-activity"></i>週間ランキング</a>
                                 </li>
                                 <li data-menu=""><a class="dropdown-item" href="app-chat.html" data-toggle="dropdown"
-                                        data-i18n="Chat"><i class="feather icon-message-square"></i>月間ランキング</a>
+                                        data-i18n="Chat"><i class="feather icon-activity"></i>月間ランキング</a>
                                 </li>
                             </ul>
                         </li>
                         <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#"
-                                data-toggle="dropdown"><i class="feather icon-package"></i><span
+                                data-toggle="dropdown"><i class="feather icon-share"></i><span
                                     data-i18n="Apps">総シェア数</span></a>
                             <ul class="dropdown-menu">
                                 <li data-menu=""><a class="dropdown-item" href="app-email.html" data-toggle="dropdown"
-                                        data-i18n="Email"><i class="feather icon-mail"></i>週間ランキング</a>
+                                        data-i18n="Email"><i class="feather icon-activity"></i>週間ランキング</a>
                                 </li>
                                 <li data-menu=""><a class="dropdown-item" href="app-chat.html" data-toggle="dropdown"
-                                        data-i18n="Chat"><i class="feather icon-message-square"></i>月間ランキング</a>
+                                        data-i18n="Chat"><i class="feather icon-activity"></i>月間ランキング</a>
                                 </li>
                             </ul>
                         </li>
                         <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#"
-                                data-toggle="dropdown"><i class="feather icon-package"></i><span
+                                data-toggle="dropdown"><i class="feather icon-film"></i><span
                                     data-i18n="Apps">総楽曲数</span></a>
                             <ul class="dropdown-menu">
                                 <li data-menu=""><a class="dropdown-item" href="app-email.html" data-toggle="dropdown"
-                                        data-i18n="Email"><i class="feather icon-mail"></i>週間ランキング</a>
+                                        data-i18n="Email"><i class="feather icon-activity"></i>週間ランキング</a>
                                 </li>
                                 <li data-menu=""><a class="dropdown-item" href="app-chat.html" data-toggle="dropdown"
-                                        data-i18n="Chat"><i class="feather icon-message-square"></i>月間ランキング</a>
+                                        data-i18n="Chat"><i class="feather icon-activity"></i>月間ランキング</a>
                                 </li>
                             </ul>
                         </li>
                         <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#"
-                                data-toggle="dropdown"><i class="feather icon-package"></i><span
+                                data-toggle="dropdown"><i class="feather icon-share"></i><span
                                     data-i18n="Apps">ジャンル別</span></a>
                             <ul class="dropdown-menu">
                                 <li data-menu=""><a class="dropdown-item" href="app-email.html" data-toggle="dropdown"
-                                        data-i18n="Email"><i class="feather icon-mail"></i>男性ランキング</a>
+                                        data-i18n="Email"><i class="fa fa-male"></i>男性ランキング</a>
                                 </li>
                                 <li data-menu=""><a class="dropdown-item" href="app-chat.html" data-toggle="dropdown"
-                                        data-i18n="Chat"><i class="feather icon-message-square"></i>女性ランキング</a>
+                                        data-i18n="Chat"><i class="fa fa-female"></i>女性ランキング</a>
                                 </li>
                                 <li data-menu=""><a class="dropdown-item" href="app-email.html" data-toggle="dropdown"
-                                        data-i18n="Email"><i class="feather icon-mail"></i>芸能人ランキング</a>
+                                        data-i18n="Email"><i class="fa fa-magic"></i>芸能人ランキング</a>
                                 </li>
                                 <li data-menu=""><a class="dropdown-item" href="app-chat.html" data-toggle="dropdown"
-                                        data-i18n="Chat"><i class="feather icon-message-square"></i>Youtuberランキング</a>
+                                        data-i18n="Chat"><i class="fa-youtube-play"></i>Youtuberランキング</a>
                                 </li>
                             </ul>
                         </li>
                         <li class="nav-item" data-menu=""><a class="dropdown-toggle nav-link" href="#" data-toggle=""><i
-                                    class="feather icon-package"></i><span data-i18n="Apps">ニュース</span></a>
+                                    class="icon-file-text"></i><span data-i18n="Apps">ニュース</span></a>
                         </li>
                     </ul>
                 </div>
