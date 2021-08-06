@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Log;
-use App\Models\Tiktok;
+use App\Models\TikTok;
 use App\Models\TikTokDaily;
 use Illuminate\Http\Request;
 
