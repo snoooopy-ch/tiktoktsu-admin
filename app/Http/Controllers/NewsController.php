@@ -33,6 +33,12 @@ class NewsController extends Controller
         return response()->json($ret);
     }
 
+    public function deletetiktok(Request $request, $id) {
+        $news = News::where('id', $id);
+        $result = $news->delete();
+        return response()->json($result);
+    }
+
     public function post() {
         $categories = NewsCategory::all();
         foreach ($categories as $index => $category)

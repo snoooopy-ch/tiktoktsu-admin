@@ -6,7 +6,6 @@ use DB;
 use Auth;
 use Response;
 use App\Models\Customer;
-use App\Models\Good;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
