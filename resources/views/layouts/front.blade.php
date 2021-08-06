@@ -540,6 +540,7 @@
                 } else {
                     userTable.column(2).search(val);
                     userTable.draw();
+                    userTable.column(2).search('');
                     event.target.value = '';
                     event.target.blur();
                     $(".search-input-close i").trigger("click");
