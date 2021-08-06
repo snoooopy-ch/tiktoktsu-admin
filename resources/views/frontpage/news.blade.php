@@ -36,9 +36,9 @@
                                             <div class="media-body pr-sm-50 pr-0">
                                                 <span class="m-0">{{ $item->created_at }}</span>
                                                 <span class="text-white badge badge-info">{{ $item->category }}</span>
-                                                <h3 class="text-bold-400 mb-0"><a class="news-list-title"
+                                                <h5 class="text-bold-400 mb-0"><a class="news-list-title"
                                                         href="{{ route('posts.view', ['id' => $item->id]) }}">{{ $item->title }}</a>
-                                                </h3>
+                                                </h5>
                                                 <p class="mb-0"><a href="{{ route('posts.view', ['id' => $item->id]) }}"
                                                         class="success">{{ route('posts.view', ['id' => $item->id]) }}</a>
                                                 </p>

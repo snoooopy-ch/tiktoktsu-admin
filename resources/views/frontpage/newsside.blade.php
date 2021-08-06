@@ -15,7 +15,7 @@
                         @endif
                         <div class="media-body">
                             <a class="" href="{{ route('posts.view', ['id' => $topItem->id]) }}">
-                                <h4 class="media-heading sidebar-title">{{ $topItem->title }}</h4>
+                                <h6 class="media-heading sidebar-title">{{ $topItem->title }}</h6>
                             </a>
                             <div class="sidebar-content">{!! $topItem->content !!}</div>
                         </div>
