@@ -57,12 +57,6 @@ class User extends Authenticatable
         // number of filtered records
         $recordsFiltered = $selector->count();
 
-        // sort
-        foreach ($params['order'] as $order) {
-            $field = $params['columns'][$order['column']]['data'];
-            $selector->orderBy($field, $order['dir']);
-        }
-
         // offset & limit
         if (!empty($params['start']) && $params['start'] > 0) {
             $selector->skip($params['start']);
