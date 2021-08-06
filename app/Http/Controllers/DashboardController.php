@@ -24,7 +24,7 @@ class DashboardController extends Controller
             $cate[$category['id']][] = $category->name;
 
         $titkok = TikTok::where('status', 1)->get();
-        return view('frontpage.home', [
+        return view('frontpage.dashboard', [
             'search-ids'    => $ids,
             'categories'    => $cate,
             'countInAll'    => count($titkok),
@@ -46,5 +46,38 @@ class DashboardController extends Controller
         $result = $tiktokModel->deleteRecord($id);
 
         return response()->json($result);
+    }
+
+    public function getUserInfo(Request $request, $id) {
+        $userID = $id;
+
+        $cate = array();
+        $categories = TikTokCategory::all();
+        foreach ($categories as $index => $category)
+            $cate[$category['id']][] = $category->name;
+
+        $tiktokInfo = TikTok::where('id', $id)->first();
+        if ($tiktokInfo == null) {
+            return redirect()->back();
+        }
+        $tiktokInfo->category = array_key_exists($tiktokInfo->category, $cate)? $cate[$tiktokInfo->category][0] : '';
+
+        $collection = collect(TikTok::orderBy('follercount', 'desc')->get());
+        $data = $collection->where('id', $id);
+        $follerRank = $data->keys()->first() + 1;
+
+        $collection = collect(TikTok::orderBy('heart', 'desc')->get());
+        $data = $collection->where('id', $id);
+        $heartRank = $data->keys()->first() + 1;
+
+        $titkok = TikTok::where('status', 1)->get();
+
+        return view('frontpage.user.index', [
+            'tiktokInfo'    => $tiktokInfo,
+            'follerRank'    => $follerRank,
+            'heartRank'     => $heartRank,
+            'categories'    => $cate,
+            'countInAll'    => count($titkok),
+        ]);
     }
 }

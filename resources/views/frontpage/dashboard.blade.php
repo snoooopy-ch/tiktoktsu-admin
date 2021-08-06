@@ -16,7 +16,7 @@
     <div class="content-body">
         <div class="card card-body" style="margin-left: 5px; margin-right: 5px;">
             <div class="table table-no-border table-striped table-responsive">
-                <table id="user-list" class="table table-striped">
+                <table id="userpage-list" class="table table-striped">
                     <thead class="d-none">
                     </thead>
                     <tbody>
@@ -38,7 +38,7 @@
 
     <script>
         let userTable;
-        userTable = $('#user-list').DataTable({
+        userTable = $('#userpage-list').DataTable({
             processing: true,
             serverSide: true,
             searching: true,
@@ -60,7 +60,6 @@
                 }
             }],
             bSort: false,
-            'stateSave': true,
             columns: [{
                     data: null,
                     className: "text-center",
@@ -81,6 +80,7 @@
                 }
             ],
             createdRow: function(row, data, index) {
+                $(row).attr('data-id', data['id']);
                 var pageInfo = userTable.page.info();
 
                 $('td', row).eq(0).html('').append(
@@ -93,9 +93,16 @@
 
                 $('td', row).eq(2).html('').append(
                     '<span>' + data['uniqueId'] + '</span><br>' +
-                    '<i class="feather icon-users"></i><span>&nbsp;' + data['follercount'] + '</span><br>' +
-                    '<i class="feather icon-heart"></i><span>&nbsp;' + data['heart'] + '</span><br>' +
-                    '<i class="feather icon-tv"></i><span>&nbsp;' + data['videocount'] + '</span>'
+                    '<i class="feather icon-users"></i><span>&nbsp;' + data['follercount']
+                    .toLocaleString() + '</span><br>' +
+                    '<i class="feather icon-heart"></i><span>&nbsp;' + data['heart'].toLocaleString() +
+                    '</span><br>' +
+                    '<i class="feather icon-tv"></i><span>&nbsp;' + data['videocount'].toLocaleString() +
+                    '</span>'
+                );
+
+                $('td', row).eq(3).html('').append(
+                    data['nickname'] + '<br>' + data['signature']
                 );
 
             },
@@ -128,6 +135,11 @@
                 }
             }
         });
+
+        $(document).on('click', '#userpage-list tr', function() {
+            let user_id = $(this).data('id');
+            window.location.href = BASE_URL + 'tiktok/' + user_id;
+        })
 
     </script>
 @endsection

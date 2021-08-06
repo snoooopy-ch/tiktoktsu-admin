@@ -120,7 +120,7 @@
                             </li>
                             <li class="nav-item d-none d-lg-block"><a class="nav-link"
                                     style="margin-top: 3px">登録TikToker数
-                                    {{ $countInAll }}人</a></li>
+                                    {{ number_format($countInAll) }}人</a></li>
                             <li class="nav-item nav-search"><a class="nav-link nav-link-search"><i
                                         class="ficon feather icon-search"></i></a>
                                 <div class="search-input">

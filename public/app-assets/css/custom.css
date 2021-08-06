@@ -87,3 +87,7 @@ td a i {
 	background-color: white;
 	text-align: center;
 }
+
+table#userpage-list tr {
+	cursor: pointer;
+}

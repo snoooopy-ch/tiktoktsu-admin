@@ -176,7 +176,18 @@ class TikTok extends Authenticatable
 
         return $records;
     }
-
+    
+    public function getUserInfoById($id) {
+        $records = DB::table($this->table)
+            ->where('id', $id)
+            ->select('*')
+            ->get();
+        if (!isset($records) || count($records) == 0) {
+            return null;
+        }
+        
+        return $records[0];
+    }
 
 
 
@@ -224,15 +235,7 @@ class TikTok extends Authenticatable
     //     return $ret;
     // }
 
-    // public function getRecordInfoById($id) {
-    //     $records = DB::connection($this->connection)
-    //         ->table($this->table)
-    //         ->where('id', $id)
-    //         ->select('*')
-    //         ->get();
-        
-    //     return $records[0];
-    // }
+    
 
     
 

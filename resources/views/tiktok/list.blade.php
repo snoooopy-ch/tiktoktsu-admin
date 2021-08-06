@@ -48,8 +48,8 @@
                                     <th class="text-center">ID</th>
                                     <th class="text-center">ニックネーム</th>
                                     <th class="text-center">ジャンル</th>
-                                    <th class="text-center">Following</th>
                                     <th class="text-center">Follower</th>
+                                    <th class="text-center">Following</th>
                                     <th class="text-center">DiggCount</th>
                                     <th class="text-center">ハット</th>
                                     <th class="text-center">ビデオ</th>
@@ -219,6 +219,26 @@
                 $('td', row).eq(4).html('').append(
                     data['category'] == null ? '' : (data['category'] in category ? category[data[
                         'category']][0] : '')
+                );
+
+                $('td', row).eq(5).html('').append(
+                    data['follercount'].toLocaleString()
+                );
+
+                $('td', row).eq(6).html('').append(
+                    data['followingcount'].toLocaleString()
+                );
+
+                $('td', row).eq(7).html('').append(
+                    data['diggcount'].toLocaleString()
+                );
+
+                $('td', row).eq(8).html('').append(
+                    data['heart'].toLocaleString()
+                );
+
+                $('td', row).eq(9).html('').append(
+                    data['videocount'].toLocaleString()
                 );
 
                 $('td', row).eq(10).html('').append(

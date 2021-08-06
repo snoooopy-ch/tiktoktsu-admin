@@ -28,6 +28,7 @@ class RestApiController extends Controller
             $diggcount = $params['diggcount'];
             $heart = $params['heart'];
             $videocount = $params['videocount'];
+            $signature = $params['signature'];
 
             $userInExist = TikTok::where('uniqueId', $uniqueId)->first();
             if ($userInExist != null) {
@@ -50,6 +51,7 @@ class RestApiController extends Controller
                 $userInExist->diggcount = $diggcount;
                 $userInExist->heart = $heart;
                 $userInExist->videocount = $videocount;
+                $userInExist->signature = $signature;
                 $userInExist->save();
     
                 $userInDaily = new TikTokDaily();

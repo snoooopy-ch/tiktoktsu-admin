@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', 'DashboardController@index')->name('dashboard');
 Route::post('api/front/getusers', 'DashboardController@getUsersInFrontPage');
+Route::get('/tiktok/{id}', 'DashboardController@getUserInfo')->name('tiktok.user');
 
 Route::get('/posts', 'NewsViewController@index')->name('posts');
 Route::get('/posts/{id}', 'NewsViewController@view')->name('posts.view');

@@ -55,7 +55,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    @include('frontpage.newsside')
+                    @include('frontpage.news.newsside')
                 </div>
             </div>
         </div>

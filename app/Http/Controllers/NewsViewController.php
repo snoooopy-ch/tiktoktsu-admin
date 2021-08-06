@@ -51,7 +51,7 @@ class NewsViewController extends Controller
             $cate[$category['id']][] = $category->name;
 
         $titkok = TikTok::where('status', 1)->get();
-        return view('frontpage.news', [
+        return view('frontpage.news.news', [
             'news'              => $news,
             'topNews'           => $topNews,
             'categories'        => $cate,
@@ -71,7 +71,7 @@ class NewsViewController extends Controller
             $cate[$category['id']][] = $category->name;
 
         $titkok = TikTok::where('status', 1)->get();
-        return view('frontpage.newsview', [
+        return view('frontpage.news.newsview', [
             'news'              => $newsData,
             'topNews'           => $topNews,
             'categories'        => $cate,
