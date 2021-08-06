@@ -532,11 +532,12 @@
             event.stopPropagation();
             event.stopImmediatePropagation();
             event.preventDefault();
-            if (event.keyCode === 13) {
-                if (userTable == undefined || userTable == null) {
 
+            let val = event.target.value;
+            if (event.keyCode === 13) {
+                if (typeof userTable == 'undefined') {
+                    window.location.href = PUBLIC_URL + '?user=' + val;
                 } else {
-                    let val = event.target.value;
                     userTable.column(2).search(val);
                     userTable.draw();
                     event.target.value = '';

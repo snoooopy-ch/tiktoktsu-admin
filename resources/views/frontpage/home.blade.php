@@ -50,6 +50,7 @@
                     data.period = '{{ app('request')->input('period') }}';
                     data.gender = '{{ app('request')->input('gender') }}';
                     data.category = '{{ app('request')->input('category') }}';
+                    data.user = '{{ app('request')->input('user') }}'
                 }
             },
             columnDefs: [{

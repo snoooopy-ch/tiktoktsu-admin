@@ -69,6 +69,10 @@ class TikTok extends Authenticatable
             $selector->where('status', $params['status']);
         }
 
+        if (isset($params['user']) && $params['user'] != null && $params['user'] != '') {
+            $selector->where('uniqueId', 'like', '%' . $params['user'] . '%');
+        }
+
         // filtering
         $totalCount = $selector->get()->count();
 
