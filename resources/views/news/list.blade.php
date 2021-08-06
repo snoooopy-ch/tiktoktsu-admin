@@ -65,6 +65,7 @@
                                 <tr>
                                     <th class="text-center">番号</th>
                                     <th class="text-center">タイトル</th>
+                                    <th class="text-center">カテゴリー</th>
                                     <th class="text-center">投稿者</th>
                                     <th class="text-center">日付</th>
                                     <th class="text-center">操作</th>
@@ -85,6 +86,8 @@
 
     <script>
         var tradeDates = [];
+        let categories = @json($categories);
+
         $('#search-day').daterangepicker({
                 opens: 'right',
                 autoUpdateInput: false,
@@ -135,6 +138,10 @@
                     data: 'title',
                     className: "text-left"
                 }, {
+                    data: null,
+                    className: "text-center"
+                },
+                {
                     data: 'writer',
                     className: "text-center"
                 }, {
@@ -154,7 +161,17 @@
                     '<span>' + (pageInfo.page * pageInfo.length + index + 1) + '</span>'
                 );
 
-                $('td', row).eq(4).html('').append(
+                let link = BASE_URL + 'posts/' + data['id'];
+                $('td', row).eq(1).html('').append(
+                    '<a href="' + link + '" target="_blank">' + data['title'] + '</a>'
+                );
+
+                $('td', row).eq(2).html('').append(
+                    data['category'] == null ? '' : (data['category'] in categories ? categories[data[
+                        'category']][0] : '')
+                );
+
+                $('td', row).eq(5).html('').append(
                     '<a href="#" class="delete_btn list-icons-item" data-popup="tooltip" title="title" data-container="body" data-id="' +
                     data['id'] + '"><i class="feather icon-trash"></i></a>'
                 );

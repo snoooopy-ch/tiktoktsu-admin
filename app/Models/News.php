@@ -15,6 +15,7 @@ class News extends Model
     use Notifiable;
 	protected $connection = 'mysql';
     protected $table = 'tbl_news';
+    protected $categoryTable = 'tbl_news_category';
     /**
      * The attributes that are mass assignable.
      *
@@ -147,8 +148,15 @@ class News extends Model
             ->where('id', $id)
             ->increment('read', 1);
         $records = DB::table($this->table)
-            ->where('id', $id)
-            ->select('*')
+            ->leftJoin($this->categoryTable, $this->table . '.category', '=', $this->categoryTable . '.id')
+            ->where($this->table . '.id', $id)
+            ->select(
+                $this->table . '.id',
+                $this->table . '.title',
+                $this->table . '.content',
+                $this->table . '.created_at',
+                $this->table . '.updated_at',
+                $this->categoryTable . '.category as category')
             ->get();
 
         if (!isset($records) || count($records) == 0)

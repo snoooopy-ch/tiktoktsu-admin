@@ -8,7 +8,9 @@
 @endsection
 
 @section('contents')
+    <?php global $UserGenderData; ?>
     <?php global $UserRoleData; ?>
+    <?php global $StatusData; ?>
 
     <!-- users list start -->
     <section class="users-list-wrapper">
@@ -72,19 +74,6 @@
 
         <input type="hidden" id="edit-caption" value="{{ trans('ui.button.edit') }}">
         <input type="hidden" id="delete-caption" value="{{ trans('ui.button.delete') }}">
-        <?php
-        echo '<script>
-            ';
-            echo 'var UserGenderData = '.json_encode(g_enum('UserGenderData')).
-            ';';
-            echo 'var UserRoleData = '.json_encode(g_enum('UserRoleData')).
-            ';';
-            echo 'var StatusData = '.json_encode(g_enum('StatusData')).
-            ';';
-            echo '
-
-        </script>';
-        ?>
 
         @if ($message = Session::get('flash_message'))
             <div class="alert alert-success alert-dismissible fade show">
@@ -136,6 +125,8 @@
 
     <script>
         var UserRoleData = @json($UserRoleData);
+        var UserGenderData = @json($UserGenderData);
+        var StatusData = @json($StatusData);
 
         function addButtonClick() {
             $('#modal_default').modal('show');

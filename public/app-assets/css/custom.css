@@ -77,3 +77,13 @@ td a i {
     -webkit-line-clamp: 2;
     word-break: break-all;
 }
+
+.horizontal-menu .horizontal-menu-wrapper {
+	background-color: #ffffff00 !important;
+	top: 50px;
+}
+
+.horizontal-menu footer {
+	background-color: white;
+	text-align: center;
+}

@@ -11,7 +11,7 @@
     <meta name="keywords"
         content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>{{ env('APP_NAME') }}&nbsp;|&nbsp;@yield('title')</title>
+    <title>{{ env('APP_NAME') }}&nbsp;&nbsp;@yield('title')</title>
     <link rel="apple-touch-icon" href="{{ cAsset('app-assets/images/ico/apple-icon-120.png') }}">
     <link rel="shortcut icon" type="image/x-icon" href="{{ cAsset('favicon.png') }}">
 
@@ -61,22 +61,11 @@
 
     <?php $user = Auth::user(); ?>
     <!-- BEGIN: Header-->
-    <?php
-    $routeName = Route::currentRouteName();
-    $userId = app('request')->input('user_id');
-    ?>
+    <?php $routeName = Route::currentRouteName(); ?>
 
     <div class="container1000" style="">
         <nav
             class="header-navbar navbar-expand-lg navbar navbar-with-menu navbar-fixed navbar-shadow navbar-brand-center">
-            <div class="navbar-header d-xl-block d-none">
-                <ul class="nav navbar-nav flex-row">
-                    <li class="nav-item"><a class="navbar-brand"
-                            href="../../../html/ltr/horizontal-menu-template/index.html">
-                            <div class="brand-logo"></div>
-                        </a></li>
-                </ul>
-            </div>
             <!-- スマホヘッダー-->
             <div class="navbar-wrapper">
                 <div class="navbar-container content">
@@ -116,11 +105,10 @@
                                 </li>
                             </ul>
                         </div>
-                        <ul class="nav navbar-nav float-right d-none">
-                            <li class="dropdown dropdown-language nav-item d-lg-none"><a
-                                    class="dropdown-toggle nav-link" id="dropdown-flag" href="#" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false"><i
-                                        class="flag-icon flag-icon-us"></i><span
+                        <ul class="nav navbar-nav float-right">
+                            <li class="dropdown dropdown-language nav-item d-none"><a class="dropdown-toggle nav-link"
+                                    id="dropdown-flag" href="#" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false"><i class="flag-icon flag-icon-us"></i><span
                                         class="selected-language">English</span></a>
                                 <div class="dropdown-menu" aria-labelledby="dropdown-flag"><a class="dropdown-item"
                                         href="#" data-language="en"><i class="flag-icon flag-icon-us"></i> English</a><a
@@ -130,19 +118,19 @@
                                         class="dropdown-item" href="#" data-language="pt"><i
                                             class="flag-icon flag-icon-pt"></i> Portuguese</a></div>
                             </li>
-                            <li class="nav-item d-none d-lg-block"><a class="nav-link">登録TikToker数
-                                    〇〇〇人</a></li>
+                            <li class="nav-item d-none d-lg-block"><a class="nav-link"
+                                    style="margin-top: 3px">登録TikToker数
+                                    {{ $countInAll }}人</a></li>
                             <li class="nav-item nav-search"><a class="nav-link nav-link-search"><i
                                         class="ficon feather icon-search"></i></a>
                                 <div class="search-input">
                                     <div class="search-input-icon"><i class="feather icon-search primary"></i></div>
-                                    <input class="input" type="text" placeholder="Explore Vuexy..." tabindex="-1"
-                                        data-search="template-list">
+                                    <input class="input" type="text" placeholder="検索する" tabindex="-1"
+                                        id="search-input-keyword">
                                     <div class="search-input-close"><i class="feather icon-x"></i></div>
-                                    <ul class="search-list search-list-main"></ul>
                                 </div>
                             </li>
-                            <li class="dropdown dropdown-notification nav-item d-lg-none"><a
+                            <li class="dropdown dropdown-notification nav-item d-none"><a
                                     class="nav-link nav-link-label" href="#" data-toggle="dropdown"><i
                                         class="ficon feather icon-bell"></i><span
                                         class="badge badge-pill badge-primary badge-up">5</span></a>
@@ -220,7 +208,7 @@
                                             href="javascript:void(0)">Read all notifications</a></li>
                                 </ul>
                             </li>
-                            <li class="dropdown dropdown-user nav-item d-lg-none"><a
+                            <li class="dropdown dropdown-user nav-item d-none"><a
                                     class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
                                     <div class="user-nav d-sm-flex d-none"><span class="user-name text-bold-600">John
                                             Doe</span><span class="user-status">Available</span></div><span><img
@@ -371,53 +359,65 @@
                     <!-- include ../../../includes/mixins-->
                     <ul class="nav navbar-nav justify-content-around" id="main-menu-navigation"
                         data-menu="menu-navigation">
+                        <li class="nav-item" data-menu="">
+                            <a class="nav-link" href="{{ route('publish') }}" data-toggle=""><i
+                                    class="feather icon-user-plus"></i><span data-i18n="Apps">掲載</span></a>
+                        </li>
                         <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link"
                                 href="index.html" data-toggle="dropdown"><i class="feather icon-home"></i><span
                                     data-i18n="Dashboard">急上昇</span></a>
                             <ul class="dropdown-menu">
-                                <li class="active" data-menu=""><a class="dropdown-item" href="dashboard-analytics.html"
-                                        data-toggle="dropdown" data-i18n="Analytics"><i
-                                            class="feather icon-heart"></i>フォロワー数</a>
+                                <li class="" data-menu=""><a class="dropdown-item"
+                                        href="{{ route('dashboard', ['key' => 'follower']) }}" data-toggle="dropdown"
+                                        data-i18n="Analytics"><i class="feather icon-users"></i>フォロワー数</a>
                                 </li>
-                                <li data-menu=""><a class="dropdown-item" href="dashboard-ecommerce.html"
-                                        data-toggle="dropdown" data-i18n="eCommerce"><i
-                                            class="icon-thumbs-up"></i>いいね数</a>
+                                <li data-menu=""><a class="dropdown-item"
+                                        href="{{ route('dashboard', ['key' => 'heart']) }}" data-toggle="dropdown"
+                                        data-i18n="eCommerce"><i class="feather icon-heart"></i>いいね数</a>
                                 </li>
-                                <li class="" data-menu=""><a class="dropdown-item" href="dashboard-analytics.html"
-                                        data-toggle="dropdown" data-i18n="Analytics"><i
-                                            class="feather icon-message-circle"></i>コメント数</a>
+                                <li class="" data-menu=""><a class="dropdown-item"
+                                        href="{{ route('dashboard', ['key' => 'comment']) }}" data-toggle="dropdown"
+                                        data-i18n="Analytics"><i class="feather icon-message-circle"></i>コメント数</a>
                                 </li>
-                                <li data-menu=""><a class="dropdown-item" href="dashboard-ecommerce.html"
-                                        data-toggle="dropdown" data-i18n="eCommerce"><i
-                                            class="feather icon-share"></i>シェア数</a>
+                                <li data-menu=""><a class="dropdown-item"
+                                        href="{{ route('dashboard', ['key' => 'share']) }}" data-toggle="dropdown"
+                                        data-i18n="eCommerce"><i class="feather icon-share"></i>シェア数</a>
                                 </li>
-                                <li data-menu=""><a class="dropdown-item" href="dashboard-ecommerce.html"
-                                        data-toggle="dropdown" data-i18n="eCommerce"><i
-                                            class="feather icon-film"></i>楽曲数</a>
+                                <li data-menu=""><a class="dropdown-item"
+                                        href="{{ route('dashboard', ['key' => 'music']) }}" data-toggle="dropdown"
+                                        data-i18n="eCommerce"><i class="feather icon-film"></i>楽曲数</a>
                                 </li>
                             </ul>
                         </li>
-                        <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#"
+                        <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href=""
                                 data-toggle="dropdown"><i class="feather icon-message-circle"></i><span
                                     data-i18n="Apps">総コメント数</span></a>
                             <ul class="dropdown-menu">
-                                <li data-menu=""><a class="dropdown-item" href="app-email.html" data-toggle="dropdown"
-                                        data-i18n="Email"><i class="feather icon-activity"></i>週間ランキング</a>
+                                <li data-menu=""><a class="dropdown-item"
+                                        href="{{ route('dashboard', ['key' => 'comment_grow', 'period' => 'week']) }}"
+                                        data-toggle="dropdown" data-i18n="Email"><i
+                                            class="feather icon-activity"></i>週間ランキング</a>
                                 </li>
-                                <li data-menu=""><a class="dropdown-item" href="app-chat.html" data-toggle="dropdown"
-                                        data-i18n="Chat"><i class="feather icon-activity"></i>月間ランキング</a>
+                                <li data-menu=""><a class="dropdown-item"
+                                        href="{{ route('dashboard', ['key' => 'comment_grow', 'period' => 'month']) }}"
+                                        data-toggle="dropdown" data-i18n="Chat"><i
+                                            class="feather icon-activity"></i>月間ランキング</a>
                                 </li>
                             </ul>
                         </li>
-                        <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#"
+                        <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href=""
                                 data-toggle="dropdown"><i class="feather icon-share"></i><span
                                     data-i18n="Apps">総シェア数</span></a>
                             <ul class="dropdown-menu">
-                                <li data-menu=""><a class="dropdown-item" href="app-email.html" data-toggle="dropdown"
-                                        data-i18n="Email"><i class="feather icon-activity"></i>週間ランキング</a>
+                                <li data-menu=""><a class="dropdown-item"
+                                        href="{{ route('dashboard', ['key' => 'share_grow', 'period' => 'week']) }}"
+                                        data-toggle="dropdown" data-i18n="Email"><i
+                                            class="feather icon-activity"></i>週間ランキング</a>
                                 </li>
-                                <li data-menu=""><a class="dropdown-item" href="app-chat.html" data-toggle="dropdown"
-                                        data-i18n="Chat"><i class="feather icon-activity"></i>月間ランキング</a>
+                                <li data-menu=""><a class="dropdown-item"
+                                        href="{{ route('dashboard', ['key' => 'share_grow', 'period' => 'month']) }}"
+                                        data-toggle="dropdown" data-i18n="Chat"><i
+                                            class="feather icon-activity"></i>月間ランキング</a>
                                 </li>
                             </ul>
                         </li>
@@ -425,30 +425,29 @@
                                 data-toggle="dropdown"><i class="feather icon-film"></i><span
                                     data-i18n="Apps">総楽曲数</span></a>
                             <ul class="dropdown-menu">
-                                <li data-menu=""><a class="dropdown-item" href="app-email.html" data-toggle="dropdown"
-                                        data-i18n="Email"><i class="feather icon-activity"></i>週間ランキング</a>
+                                <li data-menu=""><a class="dropdown-item"
+                                        href="{{ route('dashboard', ['key' => 'music_grow', 'period' => 'week']) }}"
+                                        data-toggle="dropdown" data-i18n="Email"><i
+                                            class="feather icon-activity"></i>週間ランキング</a>
                                 </li>
-                                <li data-menu=""><a class="dropdown-item" href="app-chat.html" data-toggle="dropdown"
-                                        data-i18n="Chat"><i class="feather icon-activity"></i>月間ランキング</a>
+                                <li data-menu=""><a class="dropdown-item"
+                                        href="{{ route('dashboard', ['key' => 'music_grow', 'period' => 'month']) }}"
+                                        data-toggle="dropdown" data-i18n="Chat"><i
+                                            class="feather icon-activity"></i>月間ランキング</a>
                                 </li>
                             </ul>
                         </li>
                         <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#"
-                                data-toggle="dropdown"><i class="feather icon-share"></i><span
+                                data-toggle="dropdown"><i class="feather icon-file-plus"></i><span
                                     data-i18n="Apps">ジャンル別</span></a>
                             <ul class="dropdown-menu">
-                                <li data-menu=""><a class="dropdown-item" href="app-email.html" data-toggle="dropdown"
-                                        data-i18n="Email"><i class="fa fa-male"></i>男性ランキング</a>
-                                </li>
-                                <li data-menu=""><a class="dropdown-item" href="app-chat.html" data-toggle="dropdown"
-                                        data-i18n="Chat"><i class="fa fa-female"></i>女性ランキング</a>
-                                </li>
-                                <li data-menu=""><a class="dropdown-item" href="app-email.html" data-toggle="dropdown"
-                                        data-i18n="Email"><i class="fa fa-magic"></i>芸能人ランキング</a>
-                                </li>
-                                <li data-menu=""><a class="dropdown-item" href="app-chat.html" data-toggle="dropdown"
-                                        data-i18n="Chat"><i class="fa-youtube-play"></i>Youtuberランキング</a>
-                                </li>
+                                @foreach ($categories as $index => $category)
+                                    <li data-menu=""><a class="dropdown-item"
+                                            href="{{ route('dashboard', ['category' => $index]) }}"
+                                            data-toggle="dropdown" data-i18n=""><i
+                                                class="feather icon-file-plus"></i>{{ $category[0] }}</a>
+                                    </li>
+                                @endforeach
                             </ul>
                         </li>
                         <li class="nav-item" data-menu=""><a class="nav-link" href="{{ route('posts') }}"
@@ -487,10 +486,10 @@
 
         <!-- BEGIN: Footer-->
         <footer class="footer footer-static footer-light navbar-shadow">
-            <p class="clearfix blue-grey lighten-2 mb-0"><span
-                    class="float-md-left d-block d-md-inline-block mt-25">COPYRIGHT &copy; <a
-                        class="text-bold-800 grey darken-2" href="{{ route('tiktok') }}"
-                        target="_blank">{{ env('APP_NAME') }} Co. Ltd. </a>All rights Reserved</span>
+            <p class="clearfix blue-grey lighten-2 mb-0"><span class="d-block d-md-inline-block mt-25">COPYRIGHT
+                    &copy;2021
+                    <a class="text-bold-800 grey darken-2" href="{{ route('home') }}" target="_blank">WEBSTYLE,Inc.
+                    </a>All rights Reserved</span>
                 <button class="btn btn-primary btn-icon scroll-top" type="button"><i
                         class="feather icon-arrow-up"></i></button>
             </p>
@@ -526,6 +525,24 @@
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            }
+        });
+
+        $("#search-input-keyword").keyup(function(event) {
+            event.stopPropagation();
+            event.stopImmediatePropagation();
+            event.preventDefault();
+            if (event.keyCode === 13) {
+                if (userTable == undefined || userTable == null) {
+
+                } else {
+                    let val = event.target.value;
+                    userTable.column(2).search(val);
+                    userTable.draw();
+                    event.target.value = '';
+                    event.target.blur();
+                    $(".search-input-close i").trigger("click");
+                }
             }
         });
 

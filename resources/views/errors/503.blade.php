@@ -1,4 +1,4 @@
-@extends('layouts.front')
+@extends('layouts.prelogin')
 
 @section('title', trans('errors.title'))
 

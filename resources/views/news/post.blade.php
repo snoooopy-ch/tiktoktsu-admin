@@ -37,6 +37,14 @@
                                     <input type="text" class="form-control" name="title" placeholder="タイトルを入力してください。">
                                 </div>
                                 <div class="form-group">
+                                    <label> カテゴリー </label>
+                                    <select class="form-control" id="modal_modify-category" name="category">
+                                        @foreach ($categories as $id => $category)
+                                            <option value="{{ $id }}">{{ $category[0] }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <label> 本文 </label>
                                     <textarea class="form-control" id="content" placeholder="コンテンツを入力してください。"
                                         name="content"></textarea>

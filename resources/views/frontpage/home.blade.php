@@ -1,5 +1,7 @@
 @extends('layouts.front')
 
+@section('title', '')
+
 @section('styles')
     <link href="{{ cAsset('vendor/datatables/datatables.css') }}" rel="stylesheet">
     <style>
@@ -43,6 +45,12 @@
             ajax: {
                 url: BASE_URL + 'api/front/getusers',
                 type: 'POST',
+                data: function(data) {
+                    data.key = '{{ app('request')->input('key') }}';
+                    data.period = '{{ app('request')->input('period') }}';
+                    data.gender = '{{ app('request')->input('gender') }}';
+                    data.category = '{{ app('request')->input('category') }}';
+                }
             },
             columnDefs: [{
                 'targets': 0,
@@ -50,14 +58,17 @@
                     'selectRow': true
                 }
             }],
+            bSort: false,
             'stateSave': true,
             columns: [{
                     data: null,
-                    className: "text-center"
+                    className: "text-center",
+                    width: '50px'
                 },
                 {
                     data: null,
-                    className: "text-center"
+                    className: "text-center",
+                    width: '100px'
                 },
                 {
                     data: null,
@@ -81,8 +92,8 @@
 
                 $('td', row).eq(2).html('').append(
                     '<span>' + data['uniqueId'] + '</span><br>' +
-                    '<i class="feather icon-heart"></i><span>&nbsp;' + data['heart'] + '</span><br>' +
                     '<i class="feather icon-users"></i><span>&nbsp;' + data['follercount'] + '</span><br>' +
+                    '<i class="feather icon-heart"></i><span>&nbsp;' + data['heart'] + '</span><br>' +
                     '<i class="feather icon-tv"></i><span>&nbsp;' + data['videocount'] + '</span>'
                 );
 

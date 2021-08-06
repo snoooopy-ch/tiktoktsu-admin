@@ -293,8 +293,8 @@
       container[0].addEventListener("ps-scroll-y", function () {
         if (
           $(this)
-          .find(".ps__thumb-y")
-          .position().top > 0
+            .find(".ps__thumb-y")
+            .position().top > 0
         ) {
           $(".shadow-bottom").css("display", "block");
         } else {
@@ -321,10 +321,10 @@
 
     // Swipe menu gesture
     var swipeInElement = document.querySelector('.drag-target'),
-    swipeInAction = 'panright',
-    swipeOutAction = 'panleft';
+      swipeInAction = 'panright',
+      swipeOutAction = 'panleft';
 
-    if(rtl === true){
+    if (rtl === true) {
       swipeInAction = 'panleft';
       swipeOutAction = 'panright';
     }
@@ -472,8 +472,8 @@
     var offset = $(href).offset();
     var scrollto = offset.top - 80; // minus fixed header height
     $("html, body").animate({
-        scrollTop: scrollto
-      },
+      scrollTop: scrollto
+    },
       0
     );
     setTimeout(function () {
@@ -490,13 +490,13 @@
 
   // init i18n and load language file
   i18next.use(window.i18nextXHRBackend).init({
-      debug: false,
-      fallbackLng: "en",
-      backend: {
-        loadPath: "../../../app-assets/data/locales/{{lng}}.json"
-      },
-      returnObjects: true
+    debug: false,
+    fallbackLng: "en",
+    backend: {
+      loadPath: "../../../app-assets/data/locales/{{lng}}.json"
     },
+    returnObjects: true
+  },
     function (err, t) {
       // resources have been loaded
       jqueryI18next.init(i18next, $);
@@ -642,8 +642,8 @@
       // To check if current is bookmark input
       if (
         $(this)
-        .parent()
-        .hasClass("bookmark-input")
+          .parent()
+          .hasClass("bookmark-input")
       ) {
         bookmark = true;
       }
@@ -669,10 +669,10 @@
           $htmlList = "",
           $bookmarkhtmlList = "",
           $pageList = '<li class=" d-flex align-items-center">' +
-          '<a href="#" class="pb-25">' +
-          '<h6 class="text-primary mb-0">Pages</h6>' +
-          '</a>' +
-          '</li>',
+            '<a href="#" class="pb-25">' +
+            '<h6 class="text-primary mb-0">Pages</h6>' +
+            '</a>' +
+            '</li>',
           $activeItemClass = "",
           $bookmarkIcon = "",
           $defaultList = "",
@@ -933,9 +933,9 @@
     }
 
     if (e.keyCode === 13 && $(".search-list li.current_item").length > 0) {
-      var selected_item = $(".search-list li.current_item a");
-      window.location = selected_item.attr("href");
-      $(selected_item).trigger("click");
+      // var selected_item = $(".search-list li.current_item a");
+      // window.location = selected_item.attr("href");
+      // $(selected_item).trigger("click");
     }
   });
 

@@ -1,5 +1,7 @@
 @extends('layouts.front')
 
+@section('title', '')
+
 @section('styles')
     <link href="{{ cAsset('vendor/datatables/datatables.css') }}" rel="stylesheet">
     <style>
@@ -32,7 +34,8 @@
                                                 </div>
                                             @endif
                                             <div class="media-body pr-sm-50 pr-0">
-                                                <p class="m-0">{{ $item->created_at }}</p>
+                                                <span class="m-0">{{ $item->created_at }}</span>
+                                                <span class="text-white badge badge-info">{{ $item->category }}</span>
                                                 <h3 class="text-bold-400 mb-0"><a class="news-list-title"
                                                         href="{{ route('posts.view', ['id' => $item->id]) }}"
                                                         target="_blank">{{ $item->title }}</a></h3>

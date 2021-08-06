@@ -55,3 +55,9 @@ $g_masterData = array(
     'StatusData'            => $StatusData,
 );
 
+define('TIKTOK_STATUS_REQUEST', 0);
+define('TIKTOK_STATUS_CONFIRM', 1);
+$TikTokStatus = array(
+    TIKTOK_STATUS_REQUEST => ['認証なし', 'warning'],
+    TIKTOK_STATUS_CONFIRM => ['認証済み', 'info'],
+);

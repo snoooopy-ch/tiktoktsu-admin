@@ -20,11 +20,15 @@ return [
 
 	'sidebar'	=> [
 		'tiktok'			=> 'TikTok管理',
+		'tiktok_list'		=> 'ユーザー',
+		'tiktok_category'	=> 'ジャンル',
 		'news'				=> 'ニュース管理',
 		'news_view'			=> 'ニュース閲覧',
 		'news_post'			=> 'ニュース投稿',
+		'news_category'		=> 'カテゴリー',
 		'staff'				=> 'スタッフ管理',
 		'password'			=> '管理者パスワード',
+		
 	],
 
 

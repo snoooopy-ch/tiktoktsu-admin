@@ -61,10 +61,7 @@
     style="font-family:'メイリオ', 'Meiryo', sans-serif; !important">
     <?php $user = Auth::user(); ?>
     <!-- BEGIN: Header-->
-    <?php
-    $routeName = Route::currentRouteName();
-    $userId = app('request')->input('user_id');
-    ?>
+    <?php $routeName = Route::currentRouteName(); ?>
     <nav
         class="header-navbar navbar-expand-lg navbar navbar-with-menu bg-success floating-nav navbar-light navbar-shadow">
         <div class="navbar-wrapper">
@@ -106,7 +103,7 @@
     <div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true">
         <div class="navbar-header">
             <ul class="nav navbar-nav flex-row">
-                <li class="nav-item mr-auto"><a class="navbar-brand" href="{{ route('tiktok') }}">
+                <li class="nav-item mr-auto"><a class="navbar-brand" href="{{ route('home') }}">
                         <h2 class="brand-text text-success mb-0">{{ env('APP_NAME') }}</h2>
                     </a></li>
             </ul>
@@ -115,10 +112,29 @@
 
         <div class="main-menu-content">
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-                <li class=" nav-item {{ strpos($routeName, 'tiktok') === 0 ? 'active' : '' }}">
-                    <a href="{{ route('tiktok') }}"><i class="feather icon-activity"></i><span class="menu-title"
-                            data-i18n="Users">{{ trans('ui.sidebar.tiktok') }}</span></a>
+                <li
+                    class="nav-item has-sub {{ strpos($routeName, 'tiktok') === 0 ? 'sidebar-group-active open' : '' }}">
+                    <a href="">
+                        <i class="feather icon-activity"></i>
+                        <span class="menu-title" data-i18n="">{{ trans('ui.sidebar.tiktok') }}</span>
+                    </a>
+                    <ul class="menu-content" style="">
+                        <li class="is-shown {{ strpos($routeName, 'tiktok.list') === 0 ? 'active' : '' }}">
+                            <a href="{{ route('tiktok.list') }}">
+                                <i class="feather icon-circle"></i>
+                                <span class="menu-title" data-i18n="">{{ trans('ui.sidebar.tiktok_list') }}</span>
+                            </a>
+                        </li>
+                        <li class="is-shown {{ strpos($routeName, 'tiktok.category') === 0 ? 'active' : '' }}">
+                            <a href="{{ route('tiktok.category') }}">
+                                <i class="feather icon-circle"></i>
+                                <span class="menu-title"
+                                    data-i18n="">{{ trans('ui.sidebar.tiktok_category') }}</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
+
                 <li
                     class="nav-item has-sub {{ strpos($routeName, 'news') === 0 ? 'sidebar-group-active open' : '' }}">
                     <a href="">
@@ -136,6 +152,12 @@
                             <a href="{{ route('news.post') }}">
                                 <i class="feather icon-circle"></i>
                                 <span class="menu-title" data-i18n="">{{ trans('ui.sidebar.news_post') }}</span>
+                            </a>
+                        </li>
+                        <li class="is-shown {{ strpos($routeName, 'news.category') === 0 ? 'active' : '' }}">
+                            <a href="{{ route('news.category') }}">
+                                <i class="feather icon-circle"></i>
+                                <span class="menu-title" data-i18n="">{{ trans('ui.sidebar.news_category') }}</span>
                             </a>
                         </li>
                     </ul>
@@ -181,9 +203,8 @@
 
     <!-- BEGIN: Footer-->
     <footer class="footer footer-static footer-light">
-        <p class="clearfix blue-grey lighten-2 mb-0"><span
-                class="float-md-left d-block d-md-inline-block mt-25">COPYRIGHT &copy; <a
-                    class="text-bold-800 grey darken-2" href="{{ route('tiktok') }}"
+        <p class="clearfix blue-grey lighten-2 mb-0"><span class="d-block d-md-inline-block mt-25">COPYRIGHT &copy; <a
+                    class="text-bold-800 grey darken-2" href="{{ route('home') }}"
                     target="_blank">{{ env('APP_NAME') }} Co. Ltd. </a>All rights Reserved</span>
             <button class="btn btn-primary btn-icon scroll-top" type="button"><i
                     class="feather icon-arrow-up"></i></button>
