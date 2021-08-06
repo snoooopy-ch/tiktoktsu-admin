@@ -12,7 +12,8 @@
                 <div class="row">
                     <div class="col-md">
                         <label class="form-label">期間</label>
-                        <input type="text" id="filter-period" name="filter-period" class="form-control pickadate" placeholder="Any">
+                        <input type="text" id="filter-period" name="filter-period" class="form-control pickadate"
+                            placeholder="Any">
                     </div>
                     <div class="col-md col-xl-2">
                         <label class="form-label">商品コード</label>
@@ -41,14 +42,14 @@
                     <div class="table-responsive">
                         <table id="user-sale-list" class="table table-hover-animation mb-0">
                             <thead>
-                            <tr>
-                                <th class="text-left">no</th>
-                                <th class="text-left">日付</th>
-                                <th class="text-left">商品コード</th>
-                                <th class="text-left">商品名</th>
-                                <th class="text-left">商品価格</th>
-                                <th class="text-left">商品数量</th>
-                            </tr>
+                                <tr>
+                                    <th class="text-left">no</th>
+                                    <th class="text-left">日付</th>
+                                    <th class="text-left">商品コード</th>
+                                    <th class="text-left">商品名</th>
+                                    <th class="text-left">商品価格</th>
+                                    <th class="text-left">商品数量</th>
+                                </tr>
                             </thead>
                         </table>
                     </div>
@@ -60,9 +61,9 @@
 
 @section('scripts')
     <script src="{{ cAsset('vendor/datatables/datatables.js') }}"></script>
-    <script src="{{ cAsset('vendor/moment/moment.js') }}"></script> 
+    <script src="{{ cAsset('vendor/moment/moment.js') }}"></script>
     <script src="{{ cAsset('vendor/daterangepicker/daterangepicker.min.js') }}"></script>
-    
+
     <script>
         var tradeDates = [];
         $('#filter-period').daterangepicker({
@@ -87,11 +88,11 @@
         });
 
         var selected = [];
-        $(document.body).on('click', 'input.checkbox', function (e) {
+        $(document.body).on('click', 'input.checkbox', function(e) {
             e.stopImmediatePropagation();
             // e.preventDefault();
 
-            if( $(this).is(':checked') ) {
+            if ($(this).is(':checked')) {
                 selected.push($(this).val());
             } else {
                 removeItem = $(this).val().toString();
@@ -113,8 +114,7 @@
                     selected = [];
                     userTable.ajax.reload();
                 },
-                error: function(result) {
-                }
+                error: function(result) {}
             });
         }
 
@@ -133,25 +133,40 @@
                 url: BASE_URL + 'staff/sale/getsales/' + $('#user_login').val(),
                 type: 'POST',
             },
-            columnDefs: [
-                {
-                    'targets': 0,
-                    'checkboxes': {
+            columnDefs: [{
+                'targets': 0,
+                'checkboxes': {
                     'selectRow': true
-                    }
                 }
-            ],
+            }],
             'stateSave': true,
             order: [1, 'desc'],
-            columns: [
-                {data: null, className: "text-left"},
-                {data: 'order_date', className: "text-left"},
-                {data: 'good_code', className: "text-left"},
-                {data: 'good_name', className: "text-left"},
-                {data: 'order_price', className: "text-left"},
-                {data: 'order_count', className: "text-left"},
+            columns: [{
+                    data: null,
+                    className: "text-left"
+                },
+                {
+                    data: 'order_date',
+                    className: "text-left"
+                },
+                {
+                    data: 'good_code',
+                    className: "text-left"
+                },
+                {
+                    data: 'good_name',
+                    className: "text-left"
+                },
+                {
+                    data: 'order_price',
+                    className: "text-left"
+                },
+                {
+                    data: 'order_count',
+                    className: "text-left"
+                },
             ],
-            createdRow: function (row, data, index) {
+            createdRow: function(row, data, index) {
                 var pageInfo = userTable.page.info();
 
                 // Index
@@ -163,8 +178,7 @@
                     '<span>' + number_format(data['order_price']) + '円' + '</span>'
                 );
             },
-            initComplete: function() {
-            },
+            initComplete: function() {},
             "language": {
                 "emptyTable": "テーブルにデータがありません",
                 "info": " _TOTAL_ 件中 _START_ から _END_ まで表示",
@@ -187,7 +201,7 @@
                     "sortDescending": ": 列を降順に並べ替えるにはアクティブにする"
                 }
             },
-            drawCallback: function (response) {
+            drawCallback: function(response) {
                 if (performance.navigation.type == 1) {
                     userTable.state.clear();
                 }
@@ -199,7 +213,7 @@
         });
 
         // Unused
-        $(document.body).on('click', 'a.edit_btn', function (e) {
+        $(document.body).on('click', 'a.edit_btn', function(e) {
             var id = $(this).data("id");
             $.get({
                 url: BASE_URL + 'api/getuser/' + id,
@@ -218,16 +232,15 @@
                     $('#modal_default').modal('show');
 
                 },
-                error: function(result) {
-                }
+                error: function(result) {}
             });
-            
+
             e.stopImmediatePropagation();
             e.preventDefault();
         });
 
         // Unused
-        $(document.body).on('click', 'a.delete_btn', function (e) {
+        $(document.body).on('click', 'a.delete_btn', function(e) {
             var id = $(this).data("id");
             $.get({
                 url: BASE_URL + 'api/deleteuser/' + id,
@@ -235,7 +248,7 @@
                     location.reload();
                 },
                 error: function(result) {
-                    
+
                 }
             });
             e.stopImmediatePropagation();
@@ -265,12 +278,13 @@
                     location.reload();
                 },
                 error: function(result) {
-                    
+
                 }
             });
             $('#modal_default').modal('hide');
             e.stopImmediatePropagation();
             e.preventDefault();
         });
+
     </script>
 @endsection

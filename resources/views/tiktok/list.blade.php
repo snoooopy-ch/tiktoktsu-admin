@@ -155,6 +155,7 @@
             columnDefs: [{
                 'targets': 0,
             }],
+            bSort: false,
             'stateSave': true,
             order: [3, 'desc'],
             columns: [{

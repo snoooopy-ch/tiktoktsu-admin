@@ -129,6 +129,7 @@
                     'selectRow': true
                 }
             }],
+            bSort: false,
             'stateSave': true,
             order: [3, 'desc'],
             columns: [{

@@ -219,6 +219,7 @@
                     sortDescending: "{{ trans('app.datatable.language.aria.sortDescending') }}",
                 }
             },
+            bSort: false,
             ajax: {
                 url: BASE_URL + 'ajax/staff/search',
                 type: 'POST',
