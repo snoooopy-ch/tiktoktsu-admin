@@ -37,11 +37,10 @@
                                                 <span class="m-0">{{ $item->created_at }}</span>
                                                 <span class="text-white badge badge-info">{{ $item->category }}</span>
                                                 <h3 class="text-bold-400 mb-0"><a class="news-list-title"
-                                                        href="{{ route('posts.view', ['id' => $item->id]) }}"
-                                                        target="_blank">{{ $item->title }}</a></h3>
+                                                        href="{{ route('posts.view', ['id' => $item->id]) }}">{{ $item->title }}</a>
+                                                </h3>
                                                 <p class="mb-0"><a href="{{ route('posts.view', ['id' => $item->id]) }}"
-                                                        class="success"
-                                                        target="_blank">{{ route('posts.view', ['id' => $item->id]) }}</a>
+                                                        class="success">{{ route('posts.view', ['id' => $item->id]) }}</a>
                                                 </p>
                                                 <p>{!! nl2br($item->content) !!}</p>
                                             </div>
