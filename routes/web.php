@@ -33,9 +33,9 @@ Route::get('/logout', function() {
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/tiktok/list', 'HomeController@index')->name('tiktok.list');
-    Route::get('/tiktok/category', 'HomeController@category')->name('tiktok.category');
-    Route::post('/tiktok/category/add', 'HomeController@addCagegory')->name('tiktok.category.add');
+    Route::get('/admin/tiktok/list', 'HomeController@index')->name('tiktok.list');
+    Route::get('/admin/tiktok/category', 'HomeController@category')->name('tiktok.category');
+    Route::post('/admin/tiktok/category/add', 'HomeController@addCagegory')->name('tiktok.category.add');
     Route::post('api/tiktok/getcategories', 'HomeController@getcategories');
     Route::get('api/deletetiktokcategory/{id}', 'HomeController@deleteCategory');
     Route::post('api/modifytiktokcategory/{id}', 'HomeController@modifyCategory');
@@ -45,15 +45,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('api/tiktokusers', 'HomeController@tiktokusers');
     Route::get('api/deletetiktok/{id}', 'HomeController@deletetiktok');
 
-    Route::get('/news/view', 'NewsController@index')->name('news.view');
-    Route::get('/news/post', 'NewsController@post')->name('news.post');
-    Route::post('/news/upload', 'NewsController@upload')->name('news.upload');
-    Route::post('/news/save', 'NewsController@save')->name('news.save');
+    Route::get('/admin/news/view', 'NewsController@index')->name('news.view');
+    Route::get('/admin/news/post', 'NewsController@post')->name('news.post');
+    Route::post('/admin/news/upload', 'NewsController@upload')->name('news.upload');
+    Route::post('/admin/news/save', 'NewsController@save')->name('news.save');
     Route::post('api/newslist', 'NewsController@newslist');
     Route::get('api/deletenews/{id}', 'NewsController@deletetiktok');
 
-    Route::get('/news/category', 'NewsController@category')->name('news.category');
-    Route::post('/news/category/add', 'NewsController@addCagegory')->name('news.category.add');
+    Route::get('/admin/news/category', 'NewsController@category')->name('news.category');
+    Route::post('/admin/news/category/add', 'NewsController@addCagegory')->name('news.category.add');
     Route::post('api/news/getcategories', 'NewsController@getcategories');
     Route::get('api/deletenewscategory/{id}', 'NewsController@deleteCategory');
     Route::post('api/modifynewscategory/{id}', 'NewsController@modifyCategory');
@@ -61,11 +61,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/password', 'AdminController@index')->name('password');
     Route::post('/admin/passwordupdate', 'AdminController@passwordupdate')->name('admin.passwordupdate');
 
-    Route::get('/staff', 'StaffController@index')->name('staff');
-    Route::get('/staff/add', 'StaffController@add')->name('staff.add');
-    Route::get('/staff/edit', 'StaffController@edit')->name('staff.edit');
-    Route::post('/staff/add', 'StaffController@post_add')->name('staff.post.add');
-    Route::post('/staff/edit', 'StaffController@post_edit')->name('staff.post.edit');
+    Route::get('/admin/staff', 'StaffController@index')->name('staff');
+    Route::get('/admin/staff/add', 'StaffController@add')->name('staff.add');
+    Route::get('/admin/staff/edit', 'StaffController@edit')->name('staff.edit');
+    Route::post('/admin/staff/add', 'StaffController@post_add')->name('staff.post.add');
+    Route::post('/admin/staff/edit', 'StaffController@post_edit')->name('staff.post.edit');
     Route::post('ajax/staff/search', 'StaffController@ajax_search');
     Route::post('ajax/staff/createToken', 'StaffController@ajax_createToken');
     Route::post('ajax/staff/delete', 'StaffController@ajax_delete');

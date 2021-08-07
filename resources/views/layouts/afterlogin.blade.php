@@ -74,16 +74,16 @@
                                         class="ficon feather icon-menu"></i></a></li>
                         </ul>
                     </div>
-                    <ul class="  d-none">
+                    <ul class="">
                         <li class="dropdown dropdown-user nav-item">
                             <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
                                 <div class="user-nav d-sm-flex d-none">
-                                    <span class="user-name text-bold-600">{{ $user->login_id }}</span>
-                                    <span class="user-status">{{ $user->name }}</span>
+                                    <span
+                                        class="user-name text-bold-600 d-flex align-items-center">{{ $user->user_login }}</span>
+                                    <span><img class="round"
+                                            src="{{ cAsset('/') }}/uploads/{{ !isset($user->avatar) || $user->avatar == '' ? '_none.png' : $user->avatar }}"
+                                            alt="avatar" height="40" width="40"></span>
                                 </div>
-                                <span><img class="round"
-                                        src="{{ cAsset('/') }}/uploads/{{ !isset($user->avatar) || $user->avatar == '' ? '_none.png' : $user->avatar }}"
-                                        alt="avatar" height="40" width="40"></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <div class="dropdown-divider"></div>
@@ -97,7 +97,6 @@
         </div>
     </nav>
     <!-- END: Header-->
-
 
     <!-- BEGIN: Main Menu-->
     <div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true">
@@ -162,12 +161,12 @@
                         </li>
                     </ul>
                 </li>
-
-                <li class=" nav-item {{ strpos($routeName, 'staff') === 0 ? 'active' : '' }}">
-                    <a href="{{ route('staff') }}"><i class="fa fa-user-secret"></i><span class="menu-title"
-                            data-i18n="Users">{{ trans('ui.sidebar.staff') }}</span></a>
-                </li>
-
+                @if (Auth::user()->hasRole('admin'))
+                    <li class=" nav-item {{ strpos($routeName, 'staff') === 0 ? 'active' : '' }}">
+                        <a href="{{ route('staff') }}"><i class="fa fa-user-secret"></i><span class="menu-title"
+                                data-i18n="Users">{{ trans('ui.sidebar.staff') }}</span></a>
+                    </li>
+                @endif
                 <li class=" nav-item {{ strpos($routeName, 'password') === 0 ? 'active' : '' }}">
                     <a href="{{ route('password') }}"><i class="fa fa-key"></i><span class="menu-title"
                             data-i18n="Users">{{ trans('ui.sidebar.password') }}</span></a>
