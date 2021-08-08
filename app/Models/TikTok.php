@@ -189,7 +189,26 @@ class TikTok extends Authenticatable
         return $records[0];
     }
 
+    public static function trends($id) {
+        $records = DB::table('tbl_user_daily')
+            ->where('user_id', $id)
+            ->groupBy('day')
+            ->select(
+                DB::raw('sum(follercount_grow) as foller'),
+                DB::raw('sum(heart_grow) as heart'),
+                DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d') as day")
+            )
+            ->orderBy('created_at', 'asc')
+            ->latest()
+            ->take(30)
+            ->get();
+        
+        if (!isset($records) || $records === null ||count($records) === 0) {
+            return [];
+        }
 
+        return $records;
+    }
 
 
 

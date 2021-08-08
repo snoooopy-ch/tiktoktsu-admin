@@ -76,12 +76,15 @@ class DashboardController extends Controller
 
         $titkok = TikTok::where('status', 1)->get();
 
+        $trends = Tiktok::trends($id);
+
         return view('frontpage.user.index', [
             'tiktokInfo'    => $tiktokInfo,
             'follerRank'    => $follerRank,
             'heartRank'     => $heartRank,
             'categories'    => $cate,
             'countInAll'    => count($titkok),
+            'trends'        => $trends,
         ]);
     }
 }
