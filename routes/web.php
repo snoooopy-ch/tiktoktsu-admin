@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', 'DashboardController@index')->name('dashboard');
+Route::get('/rank/{key}/{period}', 'DashboardController@index')->name('dashboard.subrank');
+Route::get('/rank/{key}', 'DashboardController@index')->name('dashboard.rank');
+Route::get('/category/{category}', 'DashboardController@index')->name('dashboard.category');
+Route::get('/user/{user}', 'DashboardController@index')->name('');
+
 Route::post('api/front/getusers', 'DashboardController@getUsersInFrontPage');
 Route::get('/tiktok/{id}', 'DashboardController@getUserInfo')->name('tiktok.user');
 

@@ -176,7 +176,7 @@ return [
 		'currency'		=> '通貨',
 		'receiver_id'	=> '送金先',
         'amount'		=> '金額',
-        'tiktok-uniqueId'   => 'TikTokのID'
+        'uniqueId'   => 'TikTokのID'
     ],
 
 ];

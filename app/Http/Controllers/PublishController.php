@@ -24,12 +24,12 @@ class PublishController extends Controller
 
     public function send(Request $request) {
         $this->validate($request, [
-            'tiktok-uniqueId' => 'required'
+            'uniqueId' => 'required|unique:tbl_user'
         ]);
 
-        $params = $request->only('tiktok-uniqueId');
+        $params = $request->only('uniqueId');
         $tiktok = new TikTok();
-        $tiktok->uniqueId = $params['tiktok-uniqueId'];
+        $tiktok->uniqueId = $params['uniqueId'];
         $tiktok->save();
 
         return redirect()->back()->with('flash_message', '登録されました。掲載まで数日かかることがあります。');

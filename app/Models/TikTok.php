@@ -73,6 +73,10 @@ class TikTok extends Authenticatable
             $selector->where('uniqueId', 'like', '%' . $params['user'] . '%');
         }
 
+        if (isset($params['category']) && $params['category'] != null && $params['category'] != '') {
+            $selector->where('category', $params['category']);
+        }
+
         // filtering
         $totalCount = $selector->get()->count();
 
@@ -81,34 +85,23 @@ class TikTok extends Authenticatable
             switch ($params['key']) {
                 case 'follower':
                     $key = 'follercount';
+                    if (isset($params['period']) && $params['period'] !== null && $params['period'] !== '') {
+                        $key = 'follercount_grow';
+                    }
                 break;
                 case 'heart':
                     $key = 'heart';
+                    if (isset($params['period']) && $params['period'] !== null && $params['period'] !== '') {
+                        $key = 'heart_grow';
+                    }
                 break;
                 case 'music':
                     $key = 'videocount';
-                break;
-                case 'comment':
-                    $key = '';
-                break;
-                case 'share':
-                    $key = '';
-                break;
-                
-                case 'comment_grow':
-                    $key = '';
-                break;
-                case 'share_grow':
-                    $key = '';
-                break;
-                case 'music_grow':
-                    $key = 'videocount_grow';
+                    if (isset($params['period']) && $params['period'] !== null && $params['period'] !== '') {
+                        $key = 'videocount_grow';
+                    }
                 break;
             }
-        }
-
-        if (isset($params['category']) && $params['category'] != null && $params['category'] != '') {
-            $selector->where('category', $params['category']);
         }
 
         $period = '';
@@ -145,6 +138,13 @@ class TikTok extends Authenticatable
 
         // get records
         $records = $selector->get();
+        foreach($records as $index => $record) {
+            if (isset($params['period']) && $params['period'] !== null && $params['period'] !== '') {
+                $records[$index]->grow = $records[$index]->{$key};
+            } else {
+                $records[$index]->grow = 0;
+            }
+        }
 
         return [
             'draw' => $params['draw']+0,

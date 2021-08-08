@@ -1,0 +1,49 @@
+.pink-body .pagination .page-item.active .page-link {
+	background-color: #e91e63;
+}
+
+.pink-body .text-primary {
+	color: #e91e63 !important;
+}
+
+.pink-body .btn-primary {
+	border-color: #e91e63 !important;
+    background-color: #ee477f !important;
+    color: #FFFFFF;
+}
+
+.pink-body .btn-primary:hover {
+	box-shadow: 0 8px 25px -8px #ee477f;
+}
+
+.pink-body .border-primary{
+	border: 1px solid #e91e63 !important;
+}
+
+.pink-body a{
+	color: #e91e63;
+}
+
+.pink-body .badge.badge-info {
+	background-color: #e91e63;
+}
+
+.pink-body .badge.badge-primary {
+	background-color: #e91e63;
+}
+
+.pink-body .pagination .page-item .page-link:hover {
+	color: #e91e63;
+}
+
+.pink-body .pagination .page-item.active .page-link:hover {
+	color: white;
+}
+
+.pink-body .primary {
+	color: #e91e63 !important;
+}
+
+.pink-body .success {
+	color: #ee477f !important;
+}

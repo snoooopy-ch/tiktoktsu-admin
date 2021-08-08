@@ -42,6 +42,7 @@
     <link rel="stylesheet" type="text/css" href="{{ cAsset('app-assets/css/pages/app-user.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ cAsset('app-assets/css/custom.css') }}">
     <!-- END: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="{{ cAsset('app-assets/css/custom-theme.css') }}">
 
     @yield('styles')
     <style>
@@ -56,7 +57,7 @@
 
 <!-- BEGIN: Body-->
 
-<body class="horizontal-layout horizontal-menu 2-columns  navbar-floating footer-static  " data-open="hover"
+<body class="horizontal-layout horizontal-menu 2-columns  navbar-floating footer-static pink-body" data-open="hover"
     data-menu="horizontal-menu" data-col="2-columns">
 
     <?php $user = Auth::user(); ?>
@@ -368,54 +369,49 @@
                                     data-i18n="Dashboard">急上昇</span></a>
                             <ul class="dropdown-menu">
                                 <li class="" data-menu=""><a class="dropdown-item"
-                                        href="{{ route('dashboard', ['key' => 'follower']) }}" data-toggle="dropdown"
-                                        data-i18n="Analytics"><i class="feather icon-users"></i>フォロワー数</a>
+                                        href="{{ route('dashboard.rank', ['key' => 'follower']) }}"
+                                        data-toggle="dropdown" data-i18n="Analytics"><i
+                                            class="feather icon-users"></i>フォロワー数</a>
                                 </li>
                                 <li data-menu=""><a class="dropdown-item"
-                                        href="{{ route('dashboard', ['key' => 'heart']) }}" data-toggle="dropdown"
-                                        data-i18n="eCommerce"><i class="feather icon-heart"></i>いいね数</a>
-                                </li>
-                                <li class="" data-menu=""><a class="dropdown-item"
-                                        href="{{ route('dashboard', ['key' => 'comment']) }}" data-toggle="dropdown"
-                                        data-i18n="Analytics"><i class="feather icon-message-circle"></i>コメント数</a>
+                                        href="{{ route('dashboard.rank', ['key' => 'heart']) }}"
+                                        data-toggle="dropdown" data-i18n="eCommerce"><i
+                                            class="feather icon-heart"></i>いいね数</a>
                                 </li>
                                 <li data-menu=""><a class="dropdown-item"
-                                        href="{{ route('dashboard', ['key' => 'share']) }}" data-toggle="dropdown"
-                                        data-i18n="eCommerce"><i class="feather icon-share"></i>シェア数</a>
-                                </li>
-                                <li data-menu=""><a class="dropdown-item"
-                                        href="{{ route('dashboard', ['key' => 'music']) }}" data-toggle="dropdown"
-                                        data-i18n="eCommerce"><i class="feather icon-film"></i>楽曲数</a>
+                                        href="{{ route('dashboard.rank', ['key' => 'music']) }}"
+                                        data-toggle="dropdown" data-i18n="eCommerce"><i
+                                            class="feather icon-film"></i>楽曲数</a>
                                 </li>
                             </ul>
                         </li>
                         <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href=""
-                                data-toggle="dropdown"><i class="feather icon-message-circle"></i><span
-                                    data-i18n="Apps">総コメント数</span></a>
+                                data-toggle="dropdown"><i class="feather icon-message-users"></i><span
+                                    data-i18n="Apps">フォロワー数</span></a>
                             <ul class="dropdown-menu">
                                 <li data-menu=""><a class="dropdown-item"
-                                        href="{{ route('dashboard', ['key' => 'comment_grow', 'period' => 'week']) }}"
+                                        href="{{ route('dashboard.subrank', ['key' => 'follower', 'period' => 'week']) }}"
                                         data-toggle="dropdown" data-i18n="Email"><i
                                             class="feather icon-activity"></i>週間ランキング</a>
                                 </li>
                                 <li data-menu=""><a class="dropdown-item"
-                                        href="{{ route('dashboard', ['key' => 'comment_grow', 'period' => 'month']) }}"
+                                        href="{{ route('dashboard.subrank', ['key' => 'follower', 'period' => 'month']) }}"
                                         data-toggle="dropdown" data-i18n="Chat"><i
                                             class="feather icon-activity"></i>月間ランキング</a>
                                 </li>
                             </ul>
                         </li>
                         <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href=""
-                                data-toggle="dropdown"><i class="feather icon-share"></i><span
-                                    data-i18n="Apps">総シェア数</span></a>
+                                data-toggle="dropdown"><i class="feather icon-heart"></i><span
+                                    data-i18n="Apps">いいね数</span></a>
                             <ul class="dropdown-menu">
                                 <li data-menu=""><a class="dropdown-item"
-                                        href="{{ route('dashboard', ['key' => 'share_grow', 'period' => 'week']) }}"
+                                        href="{{ route('dashboard.subrank', ['key' => 'heart', 'period' => 'week']) }}"
                                         data-toggle="dropdown" data-i18n="Email"><i
                                             class="feather icon-activity"></i>週間ランキング</a>
                                 </li>
                                 <li data-menu=""><a class="dropdown-item"
-                                        href="{{ route('dashboard', ['key' => 'share_grow', 'period' => 'month']) }}"
+                                        href="{{ route('dashboard.subrank', ['key' => 'heart', 'period' => 'month']) }}"
                                         data-toggle="dropdown" data-i18n="Chat"><i
                                             class="feather icon-activity"></i>月間ランキング</a>
                                 </li>
@@ -426,12 +422,12 @@
                                     data-i18n="Apps">総楽曲数</span></a>
                             <ul class="dropdown-menu">
                                 <li data-menu=""><a class="dropdown-item"
-                                        href="{{ route('dashboard', ['key' => 'music_grow', 'period' => 'week']) }}"
+                                        href="{{ route('dashboard.subrank', ['key' => 'music', 'period' => 'week']) }}"
                                         data-toggle="dropdown" data-i18n="Email"><i
                                             class="feather icon-activity"></i>週間ランキング</a>
                                 </li>
                                 <li data-menu=""><a class="dropdown-item"
-                                        href="{{ route('dashboard', ['key' => 'music_grow', 'period' => 'month']) }}"
+                                        href="{{ route('dashboard.subrank', ['key' => 'music', 'period' => 'month']) }}"
                                         data-toggle="dropdown" data-i18n="Chat"><i
                                             class="feather icon-activity"></i>月間ランキング</a>
                                 </li>
@@ -443,7 +439,7 @@
                             <ul class="dropdown-menu">
                                 @foreach ($categories as $index => $category)
                                     <li data-menu=""><a class="dropdown-item"
-                                            href="{{ route('dashboard', ['category' => $index]) }}"
+                                            href="{{ route('dashboard.category', ['category' => $index]) }}"
                                             data-toggle="dropdown" data-i18n=""><i
                                                 class="feather icon-file-plus"></i>{{ $category[0] }}</a>
                                     </li>
@@ -536,7 +532,7 @@
             let val = event.target.value;
             if (event.keyCode === 13) {
                 if (typeof userTable == 'undefined') {
-                    window.location.href = PUBLIC_URL + '?user=' + val;
+                    window.location.href = BASE_URL + 'user/' + val;
                 } else {
                     userTable.column(2).search(val);
                     userTable.draw();

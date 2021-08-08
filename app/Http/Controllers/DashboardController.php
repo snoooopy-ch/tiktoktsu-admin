@@ -31,6 +31,10 @@ class DashboardController extends Controller
         ]);
     }
 
+    public function view1() {
+        
+    }
+
     public function getUsersInFrontPage(Request $request) {
         $params = $request->all();
         $params['status'] = TIKTOK_STATUS_CONFIRM;

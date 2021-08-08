@@ -44,7 +44,7 @@
                         <div class="d-flex justify-content-center align-items-center">
                             @csrf
                             <span>https://www.tiktok.com/@</span>
-                            <input class="form-control w-auto mr-1" name="tiktok-uniqueId" id="tiktok-uniqueId">
+                            <input class="form-control w-auto mr-1" name="uniqueId" id="uniqueId">
                             <button type="submit" class="btn btn-primary mr-1 waves-effect waves-light">
                                 <i class="feather icon-edit-1"></i> TikTokアカウントを追加
                             </button>

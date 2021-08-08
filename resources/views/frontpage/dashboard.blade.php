@@ -27,7 +27,6 @@
         </div>
     </div>
 @endsection
-
 @section('scripts')
     <script src="{{ cAsset('vendor/datatables/datatables.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/encoding-japanese/1.0.30/encoding.js"
@@ -46,11 +45,10 @@
                 url: BASE_URL + 'api/front/getusers',
                 type: 'POST',
                 data: function(data) {
-                    data.key = '{{ app('request')->input('key') }}';
-                    data.period = '{{ app('request')->input('period') }}';
-                    data.gender = '{{ app('request')->input('gender') }}';
-                    data.category = '{{ app('request')->input('category') }}';
-                    data.user = '{{ app('request')->input('user') }}'
+                    data.key = '{{ app('request')->route('key') }}';
+                    data.period = '{{ app('request')->route('period') }}';
+                    data.category = '{{ app('request')->route('category') }}';
+                    data.user = '{{ app('request')->route('user') }}'
                 }
             },
             columnDefs: [{
@@ -76,7 +74,11 @@
                 },
                 {
                     data: 'nickname',
-                    className: ["text-left", "nickname"]
+                    className: "text-left nickname"
+                },
+                {
+                    data: null,
+                    className: "text-center text-primary"
                 }
             ],
             createdRow: function(row, data, index) {
@@ -103,6 +105,11 @@
 
                 $('td', row).eq(3).html('').append(
                     data['nickname'] + '<br>' + data['signature']
+                );
+
+
+                $('td', row).eq(4).html('').append(
+                    data['grow'] == 0 ? '' : data['grow'] + '↑'
                 );
 
             },
