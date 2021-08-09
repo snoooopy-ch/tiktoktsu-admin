@@ -6,6 +6,7 @@ use Auth;
 use Illuminate\Http\Request;
 use App\Models\TikTok;
 use App\Models\TikTokCategory;
+use Litipk\BigNumbers\Decimal;
 use Hash;
 
 class DashboardController extends Controller
@@ -78,6 +79,8 @@ class DashboardController extends Controller
 
         $trends = Tiktok::trends($id);
 
+        $rate = Decimal::create($tiktokInfo->follercount)->div(Decimal::create($tiktokInfo->heart))->mul(Decimal::create(100));
+
         return view('frontpage.user.index', [
             'tiktokInfo'    => $tiktokInfo,
             'follerRank'    => $follerRank,
@@ -85,6 +88,7 @@ class DashboardController extends Controller
             'categories'    => $cate,
             'countInAll'    => count($titkok),
             'trends'        => $trends,
+            'rate'          => $rate->__toString(),
         ]);
     }
 }

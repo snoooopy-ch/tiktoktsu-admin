@@ -110,7 +110,7 @@
                             </div>
                             <i class="feather icon-moon float-left mt-2 pl-2" style="font-size: 60px"></i>
                             <div class="card-body">
-                                <h4 class="card-title mt-1">{{ number_format($tiktokInfo->follercount) }}人</h4>
+                                <h4 class="card-title mt-1">{{ number_format($rate, 2) }}%</h4>
                                 <p class="card-text mb-25">&nbsp;</p>
                             </div>
                         </div>
