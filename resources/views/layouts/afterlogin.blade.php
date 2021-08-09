@@ -74,7 +74,7 @@
                                         class="ficon feather icon-menu"></i></a></li>
                         </ul>
                     </div>
-                    <ul class="">
+                    <ul class="" style="list-style-type: none">
                         <li class="dropdown dropdown-user nav-item">
                             <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
                                 <div class="user-nav d-sm-flex d-none">
