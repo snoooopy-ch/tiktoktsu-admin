@@ -156,7 +156,7 @@
                 'targets': 0,
             }],
             bSort: false,
-            'stateSave': true,
+			bStateSave: true,
             order: [3, 'desc'],
             columns: [{
                     data: null,
@@ -300,7 +300,7 @@
                 url: BASE_URL + 'api/deletetiktok/' + id,
                 success: function(result) {
                     $('#modal_default').modal('hide');
-                    tiktokTable.ajax.reload();
+                    tiktokTable.ajax.reload(null, false);
                 },
                 error: function(result) {
                     $('#modal_default').modal('hide');
@@ -330,15 +330,13 @@
                 },
                 success: function(result) {
                     $('#modal_modify').modal('hide');
-                    tiktokTable.ajax.reload();
+                    tiktokTable.ajax.reload(null, false);
                 },
                 error: function(result) {
                     $('#modal_modify').modal('hide');
                 }
             });
         });
-
-        tiktokTable.state.clear();
 
     </script>
 @endsection

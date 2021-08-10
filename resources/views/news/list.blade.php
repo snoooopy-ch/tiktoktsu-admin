@@ -219,7 +219,7 @@
                 url: BASE_URL + 'api/deletenews/' + id,
                 success: function(result) {
                     $('#modal_default').modal('hide');
-                    tiktokTable.ajax.reload();
+                    tiktokTable.ajax.reload(null, false);
                 },
                 error: function(result) {
                     $('#modal_default').modal('hide');
