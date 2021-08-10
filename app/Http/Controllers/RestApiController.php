@@ -38,8 +38,6 @@ class RestApiController extends Controller
                 $heartInc = $heart - $userInExist->heart;
                 $videocountInc = $videocount - $userInExist->videocount;
 
-                $follercountInc = $follercountInc >= 0? $follercountInc : 0;
-                $followingcountInc = $followingcountInc >= 0? $followingcountInc : 0;
                 $diggcountInc = $diggcountInc >= 0? $diggcountInc : 0;
                 $heartInc = $heartInc >= 0? $heartInc : 0;
                 $videocountInc = $videocountInc >= 0? $videocountInc : 0;

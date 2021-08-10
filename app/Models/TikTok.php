@@ -237,6 +237,55 @@ class TikTok extends Authenticatable
         return $records;
     }
 
+    public function getHistoryForDatatable($params) {
+        $selector = DB::table($this->table)
+            ->leftJoin($this->dailyTable, $this->table . '.id', '=', $this->dailyTable . '.user_id')
+            ->where($this->table . '.id', $params['id'])
+            ->whereBetween($this->table . '.created_at', $params['period'])
+            ->groupBy(
+                DB::raw('Year(tbl_user_daily.created_at), Month(tbl_user_daily.created_at), Day(tbl_user_daily.created_at)')
+            )
+            ->select(
+                $this->table . '.*',
+                DB::raw("DATE_FORMAT(tbl_user_daily.created_at, '%Y-%m-%d') as date"),
+                DB::raw('sum(tbl_user_daily.follercount_grow) as follercount_grow'),
+                DB::raw('sum(tbl_user_daily.heart_grow) as heart_grow'),
+                DB::raw('sum(tbl_user_daily.videocount_grow) as videocount_grow'),
+            );
+
+        // filtering
+        $totalCount = $selector->get()->count();
+
+        // number of filtered records
+        $recordsFiltered = $selector->get()->count();
+
+        // offset & limit
+        if (!empty($params['start']) && $params['start'] > 0) {
+            $selector->skip($params['start']);
+        }
+
+        if (!empty($params['length']) && $params['length'] > 0) {
+            $selector->take($params['length']);
+        }
+
+        $records = $selector->get();
+
+        $week = array('日', '月', '火', '水', '木', '金', '土');
+        foreach ($records as $index => $record) {
+            $date = date('Y-m-d', strtotime($records[$index]->date));
+            $w = date('w', strtotime($records[$index]->date));
+            $records[$index]->date = $date . ' （' . $week[$w] . '）';
+        }
+
+        return [
+            'draw' => $params['draw']+0,
+            'recordsTotal' => $totalCount,
+            'recordsFiltered' => $recordsFiltered,
+            'data' => $records,
+            'error' => 0,
+        ];
+    }
+
 
 
 

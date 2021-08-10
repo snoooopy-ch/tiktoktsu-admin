@@ -19,7 +19,9 @@ Route::get('/category/{category}', 'DashboardController@index')->name('dashboard
 Route::get('/user/{user}', 'DashboardController@index')->name('');
 
 Route::post('api/front/getusers', 'DashboardController@getUsersInFrontPage');
-Route::get('/tiktok/{id}', 'DashboardController@getUserInfo')->name('tiktok.user');
+
+Route::get('/tiktok/{id}', 'DetailController@index')->name('tiktok.user');
+Route::post('api/front/userdetail/{id}', 'DetailController@getUserDetailHistory');
 
 Route::get('/posts', 'NewsViewController@index')->name('posts');
 Route::get('/posts/{id}', 'NewsViewController@view')->name('posts.view');

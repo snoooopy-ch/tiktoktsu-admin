@@ -3,8 +3,13 @@
 @section('title', '')
 
 @section('styles')
+    <link href="{{ cAsset('vendor/datatables/datatables.css') }}" rel="stylesheet">
     <style>
         #formerrors {
+            display: none;
+        }
+
+        #userhistory-list_info {
             display: none;
         }
 
@@ -142,13 +147,118 @@
                     </div>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="card card-body">
+                    <div class="table table-no-border table-striped table-responsive">
+                        <table id="userhistory-list" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <td style="background-color: #e91e63; color: white;">日付</td>
+                                    <td style="background-color: #e91e63; color: white;">フォロワー数</td>
+                                    <td style="background-color: #e91e63; color: white;">いいね数</td>
+                                    <td style="background-color: #e91e63; color: white;">投稿数</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
 
 @section('scripts')
+    <script src="{{ cAsset('vendor/datatables/datatables.js') }}"></script>
     <script src="{{ cAsset('app-assets/vendors/js/charts/chart.min.js') }}"></script>
     <script>
+        let historyTable;
+        historyTable = $('#userhistory-list').DataTable({
+            processing: true,
+            serverSide: true,
+            searching: true,
+            ajax: {
+                url: BASE_URL + "api/front/userdetail/{{ $tiktokInfo->id }}",
+                type: 'POST',
+            },
+            columnDefs: [{
+                'targets': 0,
+                'checkboxes': {
+                    'selectRow': true
+                }
+            }],
+            bSort: false,
+            bPaginate: false,
+            columns: [{
+                    data: null,
+                    className: "text-center",
+                    width: '150px'
+                },
+                {
+                    data: null,
+                    className: "text-right",
+                },
+                {
+                    data: null,
+                    className: "text-right"
+                },
+                {
+                    data: null,
+                    className: "text-right"
+                }
+            ],
+            createdRow: function(row, data, index) {
+                var pageInfo = historyTable.page.info();
+
+                $('td', row).eq(0).html('').append(
+                    data['date']
+                );
+
+                $('td', row).eq(1).html('').append(
+                    parseInt(data['follercount_grow']).toLocaleString()
+                );
+
+                $('td', row).eq(2).html('').append(
+                    parseInt(data['heart_grow']).toLocaleString()
+                );
+
+                $('td', row).eq(3).html('').append(
+                    parseInt(data['videocount_grow']).toLocaleString()
+                );
+            },
+            initComplete: function() {},
+            "language": {
+                "emptyTable": "テーブルにデータがありません",
+                "info": " _TOTAL_ 件中 _START_ から _END_ まで表示",
+                "infoEmpty": " 0 件中 0 から 0 まで表示",
+                "infoFiltered": "（全 _MAX_ 件より抽出）",
+                "infoThousands": ",",
+                "lengthMenu": "_MENU_ 件表示",
+                "loadingRecords": "読み込み中...",
+                "processing": "処理中...",
+                "search": "検索:",
+                "zeroRecords": "一致するレコードがありません",
+                "paginate": {
+                    "first": "先頭",
+                    "last": "最終",
+                    "next": "次",
+                    "previous": "前"
+                },
+                "aria": {
+                    "sortAscending": ": 列を昇順に並べ替えるにはアクティブにする",
+                    "sortDescending": ": 列を降順に並べ替えるにはアクティブにする"
+                }
+            },
+            drawCallback: function() {
+                if (performance.navigation.type == 1) {
+                    historyTable.state.clear();
+                }
+            }
+        });
+
         let trends = @json($trends);
         let trendLabel = [];
         let trendHearts = [];
