@@ -8,8 +8,8 @@
 <br><br>
 <label style="color: black;">{!! nl2br(e($content)) !!}</label>
 <br><br>
-<label style="color: black;">発信元 : {!! nl2br(e($email)) !!}</label>
-↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑<br>
+<label style="color: black;">発信元 : {!! nl2br(e($email)) !!}</label><br>
+↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 <br><br>
 
 <br>
