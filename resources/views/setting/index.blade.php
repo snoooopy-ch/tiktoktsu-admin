@@ -6,7 +6,7 @@
 @section('contents')
     <div class="row">
         <div class="col-lg-12">
-            <form method="post" action="{{ route('admin.passwordupdate') }}" enctype="multipart/form-data">
+            <form method="post" action="{{ route('setting.save') }}" enctype="multipart/form-data">
                 @csrf
                 @if ($errors->any())
                     <div class="card-body">
@@ -29,24 +29,19 @@
                 <div class="card">
                     <div class="card-body pb-2">
                         <div class="form-group row">
-                            <label class="col-form-label col-sm-2 text-sm-right"><span class="text-danger">*</span>
-                                現在のパスワード</label>
-                            <div class="col-sm-10">
-                                <input type="password" class="form-control" name="old_password" value="">
+                            <label class="col-form-label col-sm-4 col-md-2 text-sm-right"><span class="text-danger">*</span>
+                                管理者メールアドレス</label>
+                            <div class="col-sm-8 col-md-10">
+                                <input type="mail_to" class="form-control" name="mail_to"
+                                    value="{{ $setting['mail_to']['value'] }}">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-form-label col-sm-2 text-sm-right"><span class="text-danger">*</span>
-                                新しいパスワード</label>
-                            <div class="col-sm-10">
-                                <input type="password" class="form-control" name="password" value="">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-form-label col-sm-2 text-sm-right"><span class="text-danger">*</span>
-                                新しいパスワード（確認）</label>
-                            <div class="col-sm-10">
-                                <input type="password" class="form-control" name="password_confirm" value="">
+                            <label class="col-form-label col-sm-4 col-md-2 text-sm-right"><span class="text-danger">*</span>
+                                新着TikToker数</label>
+                            <div class="col-sm-8 col-md-10">
+                                <input type="recent_count" class="form-control" name="recent_count"
+                                    value="{{ $setting['recent_count']['value'] }}">
                             </div>
                         </div>
                     </div>
@@ -62,4 +57,5 @@
 @endsection
 
 @section('scripts')
+
 @endsection

@@ -28,7 +28,7 @@ return [
 		'news_category'		=> 'カテゴリー',
 		'staff'				=> 'スタッフ管理',
 		'password'			=> '管理者パスワード',
-		
+		'setting'			=> 'システム設定',
 	],
 
 

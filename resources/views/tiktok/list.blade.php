@@ -338,5 +338,7 @@
             });
         });
 
+		tiktokTable.state.clear();
+
     </script>
 @endsection

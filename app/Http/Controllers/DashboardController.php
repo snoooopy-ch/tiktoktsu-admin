@@ -6,6 +6,7 @@ use Auth;
 use Illuminate\Http\Request;
 use App\Models\TikTok;
 use App\Models\TikTokCategory;
+use App\Models\Setting;
 use Litipk\BigNumbers\Decimal;
 use Hash;
 
@@ -24,11 +25,23 @@ class DashboardController extends Controller
         foreach ($categories as $index => $category)
             $cate[$category['id']][] = $category->name;
 
+        $recentCount = Setting::where('name', 'recent_count')->first();
+
         $titkok = TikTok::where('status', 1)->get();
+        $laster = TikTok::orderBy('created_at', 'desc')->latest()->take($recentCount->value)->get();
+
+        $start = date('Y-m-d', strtotime('now -1 days')) . ' 00:00:00';
+        $end = date('Y-m-d', strtotime('now')) . ' 23:59:59';
+        $surgers = TikTok::getSurge($start, $end);
+
         return view('frontpage.dashboard', [
             'search-ids'    => $ids,
             'categories'    => $cate,
             'countInAll'    => count($titkok),
+            'laster'        => $laster,
+            'start'         => date('m/d', strtotime($start)),
+            'end'           => date('m/d', strtotime($end)),
+            'surgers'       => $surgers,
         ]);
     }
 

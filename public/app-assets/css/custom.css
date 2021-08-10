@@ -91,3 +91,10 @@ td a i {
 table#userpage-list tr {
 	cursor: pointer;
 }
+
+
+@media (max-width: 992px) {
+	.container1000 {
+		width: 100%;
+	}
+}

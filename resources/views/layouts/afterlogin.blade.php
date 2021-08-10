@@ -166,6 +166,10 @@
                         <a href="{{ route('staff') }}"><i class="fa fa-user-secret"></i><span class="menu-title"
                                 data-i18n="Users">{{ trans('ui.sidebar.staff') }}</span></a>
                     </li>
+                    <li class=" nav-item {{ strpos($routeName, 'setting') === 0 ? 'active' : '' }}">
+                        <a href="{{ route('setting.index') }}"><i class="feather icon-settings"></i><span
+                                class="menu-title" data-i18n="Users">{{ trans('ui.sidebar.setting') }}</span></a>
+                    </li>
                 @endif
                 <li class=" nav-item {{ strpos($routeName, 'password') === 0 ? 'active' : '' }}">
                     <a href="{{ route('password') }}"><i class="fa fa-key"></i><span class="menu-title"

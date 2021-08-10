@@ -22,9 +22,16 @@
                                 height="90" width="90">
                         </a>
                         <div class="media-body mt-50">
-                            <h4 class="media-heading">{{ $tiktokInfo->nickname }}</h4>
-                            <span class="text-white badge badge-primary">{{ $tiktokInfo->category }}</span>
-                            <p class="media-heading">{{ $tiktokInfo->uniqueId }}</p>
+                            <div class="row">
+                                <div class="col-sm-6 col-12">
+                                    <h4 class="media-heading">{{ $tiktokInfo->nickname }}</h4>
+                                    <span class="text-white badge badge-primary">{{ $tiktokInfo->category }}</span>
+                                    <p class="media-heading">{{ $tiktokInfo->uniqueId }}</p>
+                                </div>
+                                <div class="col-sm-12 col-12">
+                                    <p class="media-heading">{{ $tiktokInfo->signature }}</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

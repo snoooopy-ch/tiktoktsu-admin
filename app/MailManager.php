@@ -4,22 +4,20 @@ namespace App;
 
 use Mail;
 use Log;
-use App\Models\User;
 
 class MailManager
 {
-    public static function send_register($info) {
+    public static function send_contactmail($title, $content, $email, $support) {
 
         $mailData = [
-            'subject'   => $info['subject'],
-            'msg'       => $info['msg'],
-            'email'     => $info['email'],
-            'name'      => $info['name'],
+            'title'     => $title,
+            'content'   => $content,
+            'email'     => $email,
         ];
 
         try {
-            Mail::send('emails.register', $mailData, function($message) use ($info) {
-                $message->to($info['email'])->subject($mailData['Register']);
+            Mail::send('emails.contact', $mailData, function($message) use ($support){
+                $message->to($support)->subject('お問い合わせのアラム');
             });
 
             return true;

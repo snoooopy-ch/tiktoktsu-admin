@@ -30,6 +30,9 @@ Route::post('api/rest/saveuser', 'RestApiController@saveUser')->name('rest.saveu
 Route::get('/publish', 'PublishController@index')->name('publish');
 Route::post('/publish/send', 'PublishController@send')->name('publish.send');
 
+Route::get('/contact', 'ContactController@index')->name('contact.index');
+Route::post('/contact/send', 'ContactController@send')->name('contact.send');
+
 Route::get('/logout', function() {
     Auth::logout();
     return redirect()->route('login');
@@ -74,4 +77,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('ajax/staff/search', 'StaffController@ajax_search');
     Route::post('ajax/staff/createToken', 'StaffController@ajax_createToken');
     Route::post('ajax/staff/delete', 'StaffController@ajax_delete');
+
+    Route::get('/admin/setting', 'SettingController@index')->name('setting.index');
+    Route::post('/admin/setitng/save', 'SettingController@save')->name('setting.save');
 });

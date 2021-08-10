@@ -9,6 +9,7 @@ use App\Models\Customer;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Litipk\BigNumbers\Decimal;
 
 class TikTok extends Authenticatable
 {
@@ -205,6 +206,32 @@ class TikTok extends Authenticatable
         
         if (!isset($records) || $records === null ||count($records) === 0) {
             return [];
+        }
+
+        return $records;
+    }
+
+    public static function getSurge($start, $end) {
+        $recentCount = Setting::where('name', 'recent_count')->first();
+        
+        $records = DB::table('tbl_user')
+            ->leftJoin('tbl_user_daily', 'tbl_user.id', '=', 'tbl_user_daily.user_id')
+            ->whereBetween('tbl_user_daily.created_at', [$start, $end])
+            ->groupBy('tbl_user.id')
+            ->select(
+                'tbl_user.*',
+                DB::raw('sum(tbl_user_daily.follercount_grow) as follercount_grow'),
+            )
+            ->orderBy('follercount_grow', 'desc')
+            ->take($recentCount->value)
+            ->get();
+
+        if (!isset($records) || count($records) == 0) {
+            return [];
+        }
+
+        foreach ($records as $index => $record) {
+            $records[$index]->rate_up = Decimal::create($record->follercount_grow)->div(Decimal::create($record->heart))->mul(Decimal::create(100))->__toString();
         }
 
         return $records;
