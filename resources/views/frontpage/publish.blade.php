@@ -3,9 +3,16 @@
 @section('title', '')
 
 @section('styles')
+    <link href="{{ cAsset('app-assets/vendors/css/extensions/swiper.min.css') }}" rel="stylesheet">
+    <link href="{{ cAsset('app-assets/css/plugins/extensions/swiper.css') }}" rel="stylesheet">
     <style>
         #formerrors {
             display: none;
+        }
+
+        .swiper-button-next,
+        .swiper-button-prev {
+            top: 50px;
         }
 
     </style>
@@ -54,9 +61,13 @@
                     </form>
                 </div>
             </div>
+
+            @include('frontpage.footer')
         </div>
     </div>
 @endsection
 
 @section('scripts')
+    <script src="{{ cAsset('app-assets/vendors/js/extensions/swiper.min.js') }}"></script>
+    <script src="{{ cAsset('app-assets/js/scripts/extensions/swiper.js') }}"></script>
 @endsection

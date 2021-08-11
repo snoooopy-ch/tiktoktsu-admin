@@ -40,6 +40,14 @@ class DetailController extends Controller
 
         $rate = Decimal::create($tiktokInfo->follercount)->div(Decimal::create($tiktokInfo->heart))->mul(Decimal::create(100));
 
+        $recentCount = Setting::where('name', 'recent_count')->first();
+        $laster = TikTok::orderBy('created_at', 'desc')->latest()->take($recentCount->value)->get();
+
+        $start = date('Y-m-d', strtotime('now -1 days')) . ' 00:00:00';
+        $end = date('Y-m-d', strtotime('now')) . ' 23:59:59';
+        $surgers = TikTok::getSurge($start, $end);
+
+
         return view('frontpage.user.index', [
             'tiktokInfo'    => $tiktokInfo,
             'follerRank'    => $follerRank,
@@ -48,6 +56,10 @@ class DetailController extends Controller
             'countInAll'    => count($titkok),
             'trends'        => $trends,
             'rate'          => $rate->__toString(),
+            'laster'        => $laster,
+            'start'         => date('m/d', strtotime($start)),
+            'end'           => date('m/d', strtotime($end)),
+            'surgers'       => $surgers,
         ]);
     }
 

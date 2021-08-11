@@ -16,7 +16,7 @@ Route::get('/', 'DashboardController@index')->name('dashboard');
 Route::get('/rank/{key}/{period}', 'DashboardController@index')->name('dashboard.subrank');
 Route::get('/rank/{key}', 'DashboardController@index')->name('dashboard.rank');
 Route::get('/category/{category}', 'DashboardController@index')->name('dashboard.category');
-Route::get('/user/{user}', 'DashboardController@index')->name('');
+Route::get('/user/{user}', 'DashboardController@index')->name('user');
 
 Route::post('api/front/getusers', 'DashboardController@getUsersInFrontPage');
 
@@ -33,7 +33,7 @@ Route::post('api/rest/savetrending', 'RestApiController@saveTrending')->name('re
 Route::get('/publish', 'PublishController@index')->name('publish');
 Route::post('/publish/send', 'PublishController@send')->name('publish.send');
 
-Route::get('/trend', 'TrendController@index')->name('trend.index');
+Route::get('/trend//', 'TrendController@index')->name('trend.index');
 Route::post('/trend/recent', 'TrendController@recent')->name('trend.recent');
 
 Route::get('/contact', 'ContactController@index')->name('contact.index');

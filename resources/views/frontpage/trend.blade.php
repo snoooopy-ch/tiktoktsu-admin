@@ -4,6 +4,8 @@
 
 @section('styles')
     <link href="{{ cAsset('vendor/datatables/datatables.css') }}" rel="stylesheet">
+    <link href="{{ cAsset('app-assets/vendors/css/extensions/swiper.min.css') }}" rel="stylesheet">
+    <link href="{{ cAsset('app-assets/css/plugins/extensions/swiper.css') }}" rel="stylesheet">
     <style>
         #formerrors {
             display: none;
@@ -11,6 +13,11 @@
 
         #trend-list_info {
             display: none;
+        }
+
+        .swiper-button-next,
+        .swiper-button-prev {
+            top: 50px;
         }
 
     </style>
@@ -35,12 +42,16 @@
                     </div>
                 </div>
             </div>
+
+            @include('frontpage.footer')
         </div>
     </div>
 @endsection
 
 @section('scripts')
     <script src="{{ cAsset('vendor/datatables/datatables.js') }}"></script>
+    <script src="{{ cAsset('app-assets/vendors/js/extensions/swiper.min.js') }}"></script>
+    <script src="{{ cAsset('app-assets/js/scripts/extensions/swiper.js') }}"></script>
     <script>
         let trendTable;
         trendTable = $('#trend-list').DataTable({

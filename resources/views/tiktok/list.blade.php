@@ -51,7 +51,7 @@
                                     <th class="text-center">Follower</th>
                                     <th class="text-center">Following</th>
                                     <th class="text-center">DiggCount</th>
-                                    <th class="text-center">ハット</th>
+                                    <th class="text-center">ハート</th>
                                     <th class="text-center">ビデオ</th>
                                     <th class="text-center">状況</th>
                                     <th class="text-center">操作</th>
@@ -156,7 +156,7 @@
                 'targets': 0,
             }],
             bSort: false,
-			bStateSave: true,
+            bStateSave: true,
             order: [3, 'desc'],
             columns: [{
                     data: null,
@@ -338,7 +338,7 @@
             });
         });
 
-		tiktokTable.state.clear();
+        tiktokTable.state.clear();
 
     </script>
 @endsection
