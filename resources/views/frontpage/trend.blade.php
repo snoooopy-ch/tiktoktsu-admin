@@ -109,7 +109,7 @@
                 );
 
                 $('td', row).eq(4).html('').append(
-                    parseInt(data['create_time']).toLocaleString()
+                    data['create_time']
                 );
             },
             initComplete: function() {},

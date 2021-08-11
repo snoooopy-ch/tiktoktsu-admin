@@ -36,6 +36,10 @@ class Trend extends Model
 
         $records = $selector->get();
 
+        foreach($records as $index => $record) {
+            $records[$index]->create_time = date('Y-m-d', strtotime($records[$index]->create_time));
+        }
+
         return [
             'draw' => $params['draw']+0,
             'recordsTotal' => $totalCount,
