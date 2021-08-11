@@ -101,7 +101,10 @@
                 var pageInfo = trendTable.page.info();
 
                 $('td', row).eq(0).html('').append(
-                    '<img src="' + data['video_cover'] + '" width="100"/>'
+                    '<a href="https://www.tiktok.com/@' + data['tiktoker'] +
+                    '/video/' + data['long_id'] + '" target="_blank">' +
+                    '<img src="' + data['video_cover'] + '" width="100"/>' +
+                    '</a>'
                 );
 
                 $('td', row).eq(1).html('').append(

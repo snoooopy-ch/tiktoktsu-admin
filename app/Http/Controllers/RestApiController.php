@@ -82,7 +82,7 @@ class RestApiController extends Controller
         foreach($params as $index => $item) {
             $trend = Trend::create();
             $trend->title = $item->music->title;
-            $trend->long_id = $item->music->id;
+            $trend->long_id = $item->video->id;
             $trend->video_cover = $item->video->cover;
             $trend->comment_count = $item->stats->commentCount;
             $trend->play_count = $item->stats->playCount;
