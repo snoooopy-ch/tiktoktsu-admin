@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Log;
+use DateTime;
 use App\Models\TikTok;
 use App\Models\TikTokDaily;
+use App\Models\Trend;
 use Illuminate\Http\Request;
 
 class RestApiController extends Controller
@@ -71,5 +73,29 @@ class RestApiController extends Controller
                 'error'   => 'invalid'
             ], 401);
         }
+    }
+
+    public function saveTrending(Request $request) {
+        $params = $request->all();
+        $params = json_decode($params['data']);
+
+        foreach($params as $index => $item) {
+            $trend = Trend::create();
+            $trend->title = $item->music->title;
+            $trend->long_id = $item->music->id;
+            $trend->video_cover = $item->video->cover;
+            $trend->comment_count = $item->stats->commentCount;
+            $trend->play_count = $item->stats->playCount;
+            $trend->share_count = $item->stats->shareCount;
+            // $trend->create_time = gmdate('Y-m-d', strtotime($item->createTime));
+            $trend->create_time = (new DateTime("@$item->createTime"))->format('Y-m-d');
+            $trend->tiktoker = $item->author->uniqueId;
+            $trend->tiktok_avatar = $item->author->avatarThumb;
+            $trend->save();
+        }
+
+        return response()->json([
+            'success'   => 'success'
+        ], 200);
     }
 }

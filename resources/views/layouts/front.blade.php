@@ -417,22 +417,10 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#"
-                                data-toggle="dropdown"><i class="feather icon-film"></i><span
-                                    data-i18n="Apps">総楽曲数</span></a>
-                            <ul class="dropdown-menu">
-                                <li data-menu=""><a class="dropdown-item"
-                                        href="{{ route('dashboard.subrank', ['key' => 'music', 'period' => 'week']) }}"
-                                        data-toggle="dropdown" data-i18n="Email"><i
-                                            class="feather icon-activity"></i>週間ランキング</a>
-                                </li>
-                                <li data-menu=""><a class="dropdown-item"
-                                        href="{{ route('dashboard.subrank', ['key' => 'music', 'period' => 'month']) }}"
-                                        data-toggle="dropdown" data-i18n="Chat"><i
-                                            class="feather icon-activity"></i>月間ランキング</a>
-                                </li>
-                            </ul>
+                        <li class="nav-item" data-menu=""><a class="nav-link" href="{{ route('trend.index') }}"
+                                data-toggle=""><i class="feather icon-film"></i><span data-i18n="Apps">人気楽曲</span></a>
                         </li>
+
                         <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#"
                                 data-toggle="dropdown"><i class="feather icon-file-plus"></i><span
                                     data-i18n="Apps">ジャンル別</span></a>

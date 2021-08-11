@@ -28,9 +28,13 @@ Route::get('/posts/{id}', 'NewsViewController@view')->name('posts.view');
 
 Route::get('api/rest/getusers', 'RestApiController@users')->name('rest.users');
 Route::post('api/rest/saveuser', 'RestApiController@saveUser')->name('rest.saveuser');
+Route::post('api/rest/savetrending', 'RestApiController@saveTrending')->name('rest.savetrending');
 
 Route::get('/publish', 'PublishController@index')->name('publish');
 Route::post('/publish/send', 'PublishController@send')->name('publish.send');
+
+Route::get('/trend', 'TrendController@index')->name('trend.index');
+Route::post('/trend/recent', 'TrendController@recent')->name('trend.recent');
 
 Route::get('/contact', 'ContactController@index')->name('contact.index');
 Route::post('/contact/send', 'ContactController@send')->name('contact.send');
