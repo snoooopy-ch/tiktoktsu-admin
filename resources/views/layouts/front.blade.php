@@ -378,7 +378,7 @@
                                         data-toggle="dropdown" data-i18n="eCommerce"><i
                                             class="feather icon-heart"></i>いいね数</a>
                                 </li>
-                                <li data-menu=""><a class="dropdown-item"
+                                <li data-menu="" class="d-none"><a class="dropdown-item"
                                         href="{{ route('dashboard.rank', ['key' => 'music']) }}"
                                         data-toggle="dropdown" data-i18n="eCommerce"><i
                                             class="feather icon-film"></i>楽曲数</a>
@@ -386,7 +386,7 @@
                             </ul>
                         </li>
                         <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href=""
-                                data-toggle="dropdown"><i class="feather icon-message-users"></i><span
+                                data-toggle="dropdown"><i class="feather icon-users"></i><span
                                     data-i18n="Apps">フォロワー数</span></a>
                             <ul class="dropdown-menu">
                                 <li data-menu=""><a class="dropdown-item"
@@ -401,6 +401,7 @@
                                 </li>
                             </ul>
                         </li>
+
                         <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href=""
                                 data-toggle="dropdown"><i class="feather icon-heart"></i><span
                                     data-i18n="Apps">いいね数</span></a>
@@ -412,6 +413,22 @@
                                 </li>
                                 <li data-menu=""><a class="dropdown-item"
                                         href="{{ route('dashboard.subrank', ['key' => 'heart', 'period' => 'month']) }}"
+                                        data-toggle="dropdown" data-i18n="Chat"><i
+                                            class="feather icon-activity"></i>月間ランキング</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href=""
+                                data-toggle="dropdown"><i class="feather icon-tv"></i><span
+                                    data-i18n="Apps">動画投稿数</span></a>
+                            <ul class="dropdown-menu">
+                                <li data-menu=""><a class="dropdown-item"
+                                        href="{{ route('dashboard.subrank', ['key' => 'music', 'period' => 'week']) }}"
+                                        data-toggle="dropdown" data-i18n="Email"><i
+                                            class="feather icon-activity"></i>週間ランキング</a>
+                                </li>
+                                <li data-menu=""><a class="dropdown-item"
+                                        href="{{ route('dashboard.subrank', ['key' => 'music', 'period' => 'month']) }}"
                                         data-toggle="dropdown" data-i18n="Chat"><i
                                             class="feather icon-activity"></i>月間ランキング</a>
                                 </li>
