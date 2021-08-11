@@ -26,7 +26,7 @@
 @section('contents')
     <div class="content-body">
         <div class="card card-body" style="">
-            <h4 class="card-title font-weight-bold">最近流行する動画</h4>
+            <h4 class="card-title font-weight-bold">最近人気の楽曲</h4>
             <div class="row">
                 <div class="card card-body">
                     <div class="table table-no-border table-striped table-responsive">
