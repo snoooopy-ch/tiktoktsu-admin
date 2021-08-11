@@ -217,7 +217,7 @@ class TikTok extends Authenticatable
         $records = DB::table('tbl_user')
             ->leftJoin('tbl_user_daily', 'tbl_user.id', '=', 'tbl_user_daily.user_id')
             ->whereBetween('tbl_user_daily.created_at', [$start, $end])
-            ->where('status', 1)
+            ->where('tbl_user.status', 1)
             ->groupBy('tbl_user.id')
             ->select(
                 'tbl_user.*',

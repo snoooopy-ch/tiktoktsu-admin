@@ -41,7 +41,9 @@ class DetailController extends Controller
         $rate = Decimal::create($tiktokInfo->follercount)->div(Decimal::create($tiktokInfo->heart))->mul(Decimal::create(100));
 
         $recentCount = Setting::where('name', 'recent_count')->first();
-        $laster = TikTok::orderBy('created_at', 'desc')->latest()->take($recentCount->value)->get();
+        $laster = TikTok::orderBy('created_at', 'desc')
+            ->where('status', 1)
+            ->latest()->take($recentCount->value)->get();
 
         $start = date('Y-m-d', strtotime('now -1 days')) . ' 00:00:00';
         $end = date('Y-m-d', strtotime('now')) . ' 23:59:59';
