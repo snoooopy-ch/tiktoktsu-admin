@@ -33,6 +33,11 @@
                         <table id="trend-list" class="table table-striped">
                             <thead class="d-none">
                                 <tr>
+                                    <td>動画</td>
+                                    <td>楽曲名</td>
+                                    <td>プロフ</td>
+                                    <td>アカウント</td>
+                                    <td>投稿日付</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -100,7 +105,8 @@
                 );
 
                 $('td', row).eq(1).html('').append(
-                    '<span>' + data['title'] + '</span><br>' +
+                    '<i class="feather icon-music font-weight-bold"></i>&nbsp;<span class="font-weight-bold">' +
+                    data['title'] + '</span><br>' +
                     '<i class="feather icon-message-circle"></i><span>&nbsp;コメント数：' + data['comment_count']
                     .toLocaleString() + '</span><br>' +
                     '<i class="feather icon-play"></i><span>&nbsp;プレイ数：' + data['play_count']

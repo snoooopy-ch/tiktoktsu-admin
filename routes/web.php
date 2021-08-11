@@ -33,7 +33,7 @@ Route::post('api/rest/savetrending', 'RestApiController@saveTrending')->name('re
 Route::get('/publish', 'PublishController@index')->name('publish');
 Route::post('/publish/send', 'PublishController@send')->name('publish.send');
 
-Route::get('/trend//', 'TrendController@index')->name('trend.index');
+Route::get('/trend\/', 'TrendController@index')->name('trend.index');
 Route::post('/trend/recent', 'TrendController@recent')->name('trend.recent');
 
 Route::get('/contact', 'ContactController@index')->name('contact.index');
