@@ -31,7 +31,7 @@
                 <div class="card card-body">
                     <div class="table table-no-border table-striped table-responsive">
                         <table id="trend-list" class="table table-striped">
-                            <thead class="d-none">
+                            <thead>
                                 <tr>
                                     <td>動画</td>
                                     <td>楽曲名</td>
