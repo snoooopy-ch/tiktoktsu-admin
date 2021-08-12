@@ -47,18 +47,7 @@ Route::get('/logout', function() {
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/admin/tiktok/list', 'HomeController@index')->name('tiktok.list');
-    Route::get('/admin/tiktok/category', 'HomeController@category')->name('tiktok.category');
-    Route::post('/admin/tiktok/category/add', 'HomeController@addCagegory')->name('tiktok.category.add');
-    Route::post('api/tiktok/getcategories', 'HomeController@getcategories');
-    Route::get('api/deletetiktokcategory/{id}', 'HomeController@deleteCategory');
-    Route::post('api/modifytiktokcategory/{id}', 'HomeController@modifyCategory');
-    Route::post('api/modifyusercategory/{id}', 'HomeController@modifyUserCategory');
-
-    Route::get('/home', 'HomeController@index')->name('home');
-    Route::post('api/tiktokusers', 'HomeController@tiktokusers');
-    Route::get('api/deletetiktok/{id}', 'HomeController@deletetiktok');
-
+    
     Route::get('/admin/news/view', 'NewsController@index')->name('news.view');
     Route::get('/admin/news/post', 'NewsController@post')->name('news.post');
     Route::post('/admin/news/upload', 'NewsController@upload')->name('news.upload');
@@ -74,6 +63,21 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/password', 'AdminController@index')->name('password');
     Route::post('/admin/passwordupdate', 'AdminController@passwordupdate')->name('admin.passwordupdate');
+
+});
+
+Route::group(['middleware' => ['auth', 'admin.role']], function () {
+    Route::get('/admin/tiktok/list', 'HomeController@index')->name('tiktok.list');
+    Route::get('/admin/tiktok/category', 'HomeController@category')->name('tiktok.category');
+    Route::post('/admin/tiktok/category/add', 'HomeController@addCagegory')->name('tiktok.category.add');
+    Route::post('api/tiktok/getcategories', 'HomeController@getcategories');
+    Route::get('api/deletetiktokcategory/{id}', 'HomeController@deleteCategory');
+    Route::post('api/modifytiktokcategory/{id}', 'HomeController@modifyCategory');
+    Route::post('api/modifyusercategory/{id}', 'HomeController@modifyUserCategory');
+
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::post('api/tiktokusers', 'HomeController@tiktokusers');
+    Route::get('api/deletetiktok/{id}', 'HomeController@deletetiktok');
 
     Route::get('/admin/staff', 'StaffController@index')->name('staff');
     Route::get('/admin/staff/add', 'StaffController@add')->name('staff.add');

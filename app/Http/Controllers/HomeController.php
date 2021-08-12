@@ -11,6 +11,7 @@ use Hash;
 
 class HomeController extends Controller
 {
+
     public function index() {
         $categories = TikTokCategory::all();
         $cate = array();
