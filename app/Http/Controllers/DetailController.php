@@ -39,7 +39,7 @@ class DetailController extends Controller
         $trends = Tiktok::trends($id);
 
         if ($tiktokInfo->heart == 0) {
-            $rate = '0';
+            $rate = Decimal::create(0);
         } else {
             $rate = Decimal::create($tiktokInfo->follercount)->div(Decimal::create($tiktokInfo->heart))->mul(Decimal::create(100));
         }
