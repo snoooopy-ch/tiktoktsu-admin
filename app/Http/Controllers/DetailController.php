@@ -38,7 +38,12 @@ class DetailController extends Controller
 
         $trends = Tiktok::trends($id);
 
-        $rate = Decimal::create($tiktokInfo->follercount)->div(Decimal::create($tiktokInfo->heart))->mul(Decimal::create(100));
+        if ($tiktokInfo->heart == 0) {
+            $rate = '0';
+        } else {
+            $rate = Decimal::create($tiktokInfo->follercount)->div(Decimal::create($tiktokInfo->heart))->mul(Decimal::create(100));
+        }
+        
 
         $recentCount = Setting::where('name', 'recent_count')->first();
         $laster = TikTok::orderBy('created_at', 'desc')

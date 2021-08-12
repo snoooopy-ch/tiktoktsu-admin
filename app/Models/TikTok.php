@@ -232,7 +232,12 @@ class TikTok extends Authenticatable
         }
 
         foreach ($records as $index => $record) {
-            $records[$index]->rate_up = Decimal::create($record->follercount_grow)->div(Decimal::create($record->heart))->mul(Decimal::create(100))->__toString();
+            if ($record->heart == 0) {
+                $records[$index]->rate_up = '0';
+            } else {
+                $records[$index]->rate_up = Decimal::create($record->follercount_grow)->div(Decimal::create($record->heart))->mul(Decimal::create(100))->__toString();
+            }
+            
         }
 
         return $records;
