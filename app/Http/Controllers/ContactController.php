@@ -45,12 +45,12 @@ class ContactController extends Controller
             $support_mail = Setting::where('name', 'mail_to')->first();
             $ret = MailManager::send_contactmail($record['title'], $record['content'], $record['email'], $support_mail->value);
             if ($ret == false) {
-                $response = 'あ問い合わせメール送信が失敗しました。';
+                $response = 'お問い合わせメール送信が失敗しました。';
             } else {
-                $response = 'あ問い合わせメール送信が成功しました。';
+                $response = 'お問い合わせメール送信が成功しました。';
             }
         } catch(\Exception $e) {
-            $response = 'あ問い合わせメール送信が失敗しました。';
+            $response = 'お問い合わせメール送信が失敗しました。';
         }
 
         $ret = [];

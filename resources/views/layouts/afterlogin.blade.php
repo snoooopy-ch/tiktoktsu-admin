@@ -111,28 +111,31 @@
 
         <div class="main-menu-content">
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-                <li
-                    class="nav-item has-sub {{ strpos($routeName, 'tiktok') === 0 ? 'sidebar-group-active open' : '' }}">
-                    <a href="">
-                        <i class="feather icon-activity"></i>
-                        <span class="menu-title" data-i18n="">{{ trans('ui.sidebar.tiktok') }}</span>
-                    </a>
-                    <ul class="menu-content" style="">
-                        <li class="is-shown {{ strpos($routeName, 'tiktok.list') === 0 ? 'active' : '' }}">
-                            <a href="{{ route('tiktok.list') }}">
-                                <i class="feather icon-circle"></i>
-                                <span class="menu-title" data-i18n="">{{ trans('ui.sidebar.tiktok_list') }}</span>
-                            </a>
-                        </li>
-                        <li class="is-shown {{ strpos($routeName, 'tiktok.category') === 0 ? 'active' : '' }}">
-                            <a href="{{ route('tiktok.category') }}">
-                                <i class="feather icon-circle"></i>
-                                <span class="menu-title"
-                                    data-i18n="">{{ trans('ui.sidebar.tiktok_category') }}</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                @if (Auth::user()->hasRole('admin'))
+                    <li
+                        class="nav-item has-sub {{ strpos($routeName, 'tiktok') === 0 ? 'sidebar-group-active open' : '' }}">
+                        <a href="">
+                            <i class="feather icon-activity"></i>
+                            <span class="menu-title" data-i18n="">{{ trans('ui.sidebar.tiktok') }}</span>
+                        </a>
+                        <ul class="menu-content" style="">
+                            <li class="is-shown {{ strpos($routeName, 'tiktok.list') === 0 ? 'active' : '' }}">
+                                <a href="{{ route('tiktok.list') }}">
+                                    <i class="feather icon-circle"></i>
+                                    <span class="menu-title"
+                                        data-i18n="">{{ trans('ui.sidebar.tiktok_list') }}</span>
+                                </a>
+                            </li>
+                            <li class="is-shown {{ strpos($routeName, 'tiktok.category') === 0 ? 'active' : '' }}">
+                                <a href="{{ route('tiktok.category') }}">
+                                    <i class="feather icon-circle"></i>
+                                    <span class="menu-title"
+                                        data-i18n="">{{ trans('ui.sidebar.tiktok_category') }}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @endif
 
                 <li
                     class="nav-item has-sub {{ strpos($routeName, 'news') === 0 ? 'sidebar-group-active open' : '' }}">

@@ -78,7 +78,7 @@
                                             class="ficon feather icon-menu"></i></a></li>
                             </ul>
                             <a class="nav navbar-nav" href="{{ route('dashboard') }}"><img
-                                    src="{{ cAsset('images/customer_1627208365.png') }}" width="50" /></a>
+                                    src="{{ cAsset('images/logo.png') }}" width="120" /></a>
                             <ul class="nav navbar-nav bookmark-icons d-lg-none">
                                 <li class="nav-item d-none d-lg-block"><a class="nav-link" href="app-todo.html"
                                         data-toggle="tooltip" data-placement="top" title="Todo"><i
