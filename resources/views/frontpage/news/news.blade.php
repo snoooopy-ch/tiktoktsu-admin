@@ -1,6 +1,6 @@
 @extends('layouts.front')
 
-@section('title', '')
+@section('title', 'ニュースリスト')
 
 @section('styles')
     <link href="{{ cAsset('vendor/datatables/datatables.css') }}" rel="stylesheet">

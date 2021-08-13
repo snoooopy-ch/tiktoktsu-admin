@@ -1,6 +1,6 @@
 @extends('layouts.front')
 
-@section('title', '')
+@section('title', 'お問い合わせ')
 
 @section('styles')
     <style>

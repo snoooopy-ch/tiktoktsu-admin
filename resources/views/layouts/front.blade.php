@@ -11,7 +11,7 @@
     <meta name="keywords"
         content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>{{ env('APP_NAME') }}&nbsp;&nbsp;@yield('title')</title>
+    <title>{{ env('APP_NAME') }}&nbsp;|&nbsp;@yield('title')</title>
     <link rel="apple-touch-icon" href="{{ cAsset('app-assets/images/ico/apple-icon-120.png') }}">
     <link rel="shortcut icon" type="image/x-icon" href="{{ cAsset('favicon.png') }}">
 
@@ -468,7 +468,7 @@
                     <div class="content-header-left col-md-9 col-12 mb-2">
                         <div class="row breadcrumbs-top">
                             <div class="col-12">
-                                <h2 class="content-header-title float-left mb-0">@yield('title')</h2>
+                                <h2 class="content-header-title float-left mb-0">@yield('page-title')</h2>
                             </div>
                         </div>
                     </div>
