@@ -17,7 +17,7 @@ class Trend extends Model
         $selector = DB::table($table)
             ->select('*')
             ->orderBy('created_at', 'desc')
-            ->take(20);
+            ->take(10);
 
         // filtering
         $totalCount = $selector->get()->count();
