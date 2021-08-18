@@ -106,7 +106,18 @@ class News extends Model
 
     public function famouseNews() {
         $records = DB::table($this->table)
-            ->orderBy('read', 'desc')
+            ->leftJoin($this->categoryTable, $this->table . '.category', '=', $this->categoryTable . '.id')
+            ->orderBy($this->table . '.read', 'desc')
+            ->select(
+                DB::raw($this->table . '.id as id'),
+                DB::raw($this->table . '.title as title'),
+                DB::raw($this->table . '.content as content'),
+                DB::raw($this->table . '.created_at as created_at'),
+                DB::raw($this->table . '.updated_at as updated_at'),
+                DB::raw($this->table . '.writer as writer'),
+                DB::raw($this->table . '.read as `read`'),
+                DB::raw($this->categoryTable . '.category as category'),
+            )
             ->take(8)
             ->get();
         
