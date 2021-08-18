@@ -107,7 +107,7 @@ class News extends Model
     public function famouseNews() {
         $records = DB::table($this->table)
             ->orderBy('read', 'desc')
-            ->take(5)
+            ->take(8)
             ->get();
         
         if (!isset($records) || count($records) == 0) {

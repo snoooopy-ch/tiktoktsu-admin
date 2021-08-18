@@ -1,6 +1,6 @@
 @extends('layouts.front')
 
-@section('title', "$tiktokInfo->uniqueId 詳細")
+@section('title', "$tiktokInfo->uniqueId")
 
 @section('styles')
     <link href="{{ cAsset('vendor/datatables/datatables.css') }}" rel="stylesheet">

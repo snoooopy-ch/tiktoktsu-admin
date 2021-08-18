@@ -172,9 +172,14 @@
                         'category']][0] : '')
                 );
 
+                let editUrl = BASE_URL + 'admin/news/edit/' + data['id'];
+
                 $('td', row).eq(5).html('').append(
                     '<a href="#" class="delete_btn list-icons-item" data-popup="tooltip" title="title" data-container="body" data-id="' +
-                    data['id'] + '"><i class="feather icon-trash"></i></a>'
+                    data['id'] + '"><i class="feather icon-trash"></i></a>&nbsp;&nbsp;' +
+                    '<a href="' + editUrl +
+                    '" class="edit_btn list-icons-item" data-popup="tooltip" title="title" data-container="body" data-id="' +
+                    data['id'] + '"><i class="feather icon-edit"></i></a>'
                 );
             },
             initComplete: function() {},

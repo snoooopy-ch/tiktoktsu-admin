@@ -97,6 +97,28 @@ table#userpage-list tr {
     padding-right: 0.5rem;
 }
 
+.btn-group-item {
+	font-size: 12px;
+	padding-left: 1rem !important;
+	padding-right: 1rem !important;
+	padding-top: calc(0.7rem - 1px) !important;
+    padding-bottom: calc(0.7rem - 1px) !important;
+}
+
+h4.term-header {
+    border-bottom-color: white;
+    border-bottom-width: 1px;
+    border-bottom-style: dotted;
+}
+
+h6.term-header span {
+    color: #e91e63;
+    display: inline-block;
+    margin: 0 0 -1px 0;
+    padding: 5px 1px;
+    border-bottom: 3px solid #e91e63;
+}
+
 @media (max-width: 992px) {
 	.container1000 {
 		width: 100%;

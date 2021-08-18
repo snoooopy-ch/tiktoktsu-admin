@@ -44,6 +44,10 @@
 	color: #e91e63 !important;
 }
 
+.pink-body .bg-primary {
+	background-color: #e91e63 !important;
+}
+
 .pink-body .success {
 	color: #ee477f !important;
 }

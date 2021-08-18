@@ -49,6 +49,41 @@ class NewsController extends Controller
         ]);
     }
 
+    public function edit(Request $request) {
+        $id = $request->route('id');
+        $news = News::where('id', $id)->first();
+
+        $categories = NewsCategory::all();
+        foreach ($categories as $index => $category)
+            $cate[$category['id']][] = $category->category;
+
+        return view('news.edit',  [
+            'news'          => $news,
+            'categories'    => $cate,
+        ]);
+    }
+
+    public function update(Request $request) {
+        try {
+            $params = $request->all();
+            $id = $params['news-id'];
+            $category = $params['category'];
+            $title = $params['title'];
+            $content = $params['content'];
+    
+            $news = News::where('id', $id)->first();
+            $news->title = $title;
+            $news->category = $category;
+            $news->content = $content;
+            $news->save();
+    
+            return redirect()->back()->with("success", "記事投稿に成功されました。");
+        } catch (\Exception $e) {
+            return back()->with("failed", "記事投稿に失敗しました。");
+        }
+        
+    }
+
     public function save(Request $request) {
         $postArray      =   array( 
             "title"         => $request->title,

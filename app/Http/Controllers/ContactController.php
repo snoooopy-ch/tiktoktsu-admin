@@ -19,7 +19,7 @@ class ContactController extends Controller
 
         $titkok = TikTok::where('status', 1)->get();
 
-        return view('frontpage.contact', [
+        return view('frontpage.footerpage.contact', [
             'categories'    => $cate,
             'countInAll'    => count($titkok),
         ]);

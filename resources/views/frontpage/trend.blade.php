@@ -1,6 +1,6 @@
 @extends('layouts.front')
 
-@section('title', '人気楽曲')
+@section('title', '最近流行の人気楽曲')
 
 @section('styles')
     <link href="{{ cAsset('vendor/datatables/datatables.css') }}" rel="stylesheet">

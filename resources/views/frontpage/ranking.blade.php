@@ -1,6 +1,6 @@
 @extends('layouts.front')
 
-@section('title', '')
+@section('title', "$pageTitle")
 
 @section('styles')
     <link href="{{ cAsset('vendor/datatables/datatables.css') }}" rel="stylesheet">
@@ -21,17 +21,11 @@
 @endsection
 
 @section('contents')
-    <div class="content-body">
-        <div class="card card-body" style="">
-            <div class="row">
-                @include('frontpage.publishuser')
-            </div>
-        </div>
-    </div>
 
     <div class="content-body">
         <div class="card card-body" style="margin-left: 5px; margin-right: 5px;">
-            <div class="table table-no-border table-striped table-responsive position-relative">
+            <h4 class="card-title font-weight-bold">@yield('title')</h4>
+            <div class="table table-no-border table-striped table-responsive">
                 <table id="userpage-list" class="table table-striped">
                     <thead class="d-none">
                     </thead>
@@ -39,79 +33,9 @@
                         <tr></tr>
                     </tbody>
                 </table>
-
-                <div class="btn-group position-absolute" role="group" aria-label="Basic example" style="top: 0; right: 0;">
-                    <button type="button" data-order="follower" data-period="week"
-                        class="btn btn-outline-light waves-effect waves-light btn-group-item"><i
-                            class="feather icon-users"></i>&nbsp;周</button>
-                    <button type="button" data-order="follower" data-period="month"
-                        class="btn btn-outline-light waves-effect waves-light btn-group-item"><i
-                            class="feather icon-users"></i>&nbsp;月</button>
-                    <button type="button" data-order="follower" data-period=""
-                        class="btn btn-outline-light waves-effect waves-light btn-group-item"><i
-                            class="feather icon-users"></i>&nbsp;総</button>
-                    <button type="button" data-order="heart" data-period="week"
-                        class="btn btn-outline-light waves-effect waves-light btn-group-item"><i
-                            class="feather icon-heart"></i>&nbsp;周</button>
-                    <button type="button" data-order="heart" data-period="month"
-                        class="btn btn-outline-light waves-effect waves-light btn-group-item"><i
-                            class="feather icon-heart"></i>&nbsp;月</button>
-                    <button type="button" data-order="heart" data-period=""
-                        class="btn btn-outline-light waves-effect waves-light btn-group-item"><i
-                            class="feather icon-heart"></i>&nbsp;総</button>
-                </div>
             </div>
 
             @include('frontpage.footer')
-
-            <div class="p-1 bg-primary text-white">新着投稿</div>
-            <ul class="media-list p-0 row">
-                <!--search with image-->
-                @foreach ($news as $index => $item)
-                    <li class="media d-sm-flex d-block news-item col-6">
-                        @if ($item->thumb != '')
-                            <div class="media-left pr-sm-2 pr-0">
-                                <a href="{{ route('posts.view', ['id' => $item->id]) }}">
-                                    <img class="media-object" src="{{ $item->thumb }}" alt="Generic placeholder image"
-                                        width="160px">
-                                </a>
-                            </div>
-                        @endif
-                        <div class="media-body pr-sm-50 pr-0">
-                            <h5 class="text-bold-400 mb-0"><a class="news-list-title text-dark"
-                                    href="{{ route('posts.view', ['id' => $item->id]) }}">{{ $item->title }}</a>
-                            </h5>
-                            <span class="m-0">{{ $item->created_at }}</span>
-                            <span class="text-white badge badge-info">{{ $item->category }}</span>
-                        </div>
-                    </li>
-                @endforeach
-            </ul>
-            <div class="d-flex justify-content-end mt-1 mb-2">
-                <a href="{{ route('posts') }}">新着記事をもっと見る</a>
-            </div>
-
-            <div class="p-1 bg-primary text-white">よく読まれているニュース</div>
-            <ul class="media-list p-0 row">
-                <!--search with image-->
-                @foreach ($topNews as $index => $item)
-                    <li class="media d-block news-item col-6 col-sm-6 col-md-3 match-height">
-                        @if ($item->thumb != '')
-                            <a href="{{ route('posts.view', ['id' => $item->id]) }}">
-                                <img class="media-object w-100" src="{{ $item->thumb }}" alt="Generic placeholder image">
-                            </a>
-                        @endif
-                        <div class="media-body pr-sm-50 pr-0 mt-1">
-                            <h5 class="text-bold-400 mb-0"><a class="news-list-title text-dark"
-                                    href="{{ route('posts.view', ['id' => $item->id]) }}">{{ $item->title }}</a>
-                            </h5>
-                            <span class="m-0">{{ date('Y:m:d', strtotime($item->created_at)) }}</span>
-                            <span class="text-white badge badge-info">{{ $item->category }}</span>
-
-                        </div>
-                    </li>
-                @endforeach
-            </ul>
 
             <p>このサイトはTikTokの統計データを独自に収集し分析したランキングサイトです。</p>
         </div>
@@ -139,10 +63,8 @@
                 url: BASE_URL + 'api/front/getusers',
                 type: 'POST',
                 data: function(data) {
-                    data.key = $('.btn.btn-outline-light.waves-effect.waves-light.btn-group-item.active')
-                        .data('order');
-                    data.period = $('.btn.btn-outline-light.waves-effect.waves-light.btn-group-item.active')
-                        .data('period');
+                    data.key = '{{ app('request')->route('key') }}';
+                    data.period = '{{ app('request')->route('period') }}';
                     data.category = '{{ app('request')->route('category') }}';
                     data.user = '{{ app('request')->route('user') }}'
                 }
@@ -243,16 +165,6 @@
             let user_id = $(this).data('id');
             window.location.href = BASE_URL + 'tiktok/' + user_id;
         })
-
-        $(document).on('click', '.btn-group button', function(e) {
-            activateButton($(e.target));
-            userTable.clear().draw();
-        });
-
-        function activateButton(target) {
-            $('.btn.btn-outline-light.waves-effect.waves-light.btn-group-item').removeClass('active');
-            target.addClass('active');
-        }
 
     </script>
 @endsection

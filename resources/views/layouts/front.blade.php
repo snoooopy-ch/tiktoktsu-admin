@@ -11,7 +11,7 @@
     <meta name="keywords"
         content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>{{ env('APP_NAME') }}&nbsp;|&nbsp;@yield('title')</title>
+    <title>@yield('title')&nbsp;|&nbsp;{{ env('APP_NAME') }}</title>
     <link rel="apple-touch-icon" href="{{ cAsset('app-assets/images/ico/apple-icon-120.png') }}">
     <link rel="shortcut icon" type="image/x-icon" href="{{ cAsset('favicon.png') }}">
 
@@ -359,29 +359,12 @@
                     <ul class="nav navbar-nav justify-content-around" id="main-menu-navigation"
                         data-menu="menu-navigation">
                         <li class="nav-item" data-menu="">
-                            <a class="nav-link" href="{{ route('publish') }}" data-toggle=""><i
-                                    class="feather icon-user-plus"></i><span data-i18n="Apps">掲載</span></a>
-                        </li>
-                        <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link"
-                                href="index.html" data-toggle="dropdown"><i class="feather icon-home"></i><span
-                                    data-i18n="Dashboard">急上昇</span></a>
-                            <ul class="dropdown-menu">
-                                <li class="" data-menu=""><a class="dropdown-item"
-                                        href="{{ route('dashboard.rank', ['key' => 'follower']) }}"
-                                        data-toggle="dropdown" data-i18n="Analytics"><i
-                                            class="feather icon-users"></i>フォロワー数</a>
-                                </li>
-                                <li data-menu=""><a class="dropdown-item"
-                                        href="{{ route('dashboard.rank', ['key' => 'heart']) }}"
-                                        data-toggle="dropdown" data-i18n="eCommerce"><i
-                                            class="feather icon-heart"></i>いいね数</a>
-                                </li>
-                                <li data-menu="" class="d-none"><a class="dropdown-item"
-                                        href="{{ route('dashboard.rank', ['key' => 'music']) }}"
-                                        data-toggle="dropdown" data-i18n="eCommerce"><i
-                                            class="feather icon-film"></i>楽曲数</a>
-                                </li>
-                            </ul>
+                            <a class="nav-link d-lg-block d-sm-none d-none" href="{{ route('publish') }}"
+                                data-toggle=""><i class="feather icon-user-plus"></i><span
+                                    data-i18n="Apps">掲載</span></a>
+                            <a class="nav-link d-lg-none d-sm-block d-block" href="{{ route('publish') }}"
+                                data-toggle=""><i class="feather icon-user-plus"></i><span
+                                    data-i18n="Apps">ランキングに掲載</span></a>
                         </li>
                         <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href=""
                                 data-toggle="dropdown"><i class="feather icon-users"></i><span
@@ -396,6 +379,11 @@
                                         href="{{ route('dashboard.subrank', ['key' => 'follower', 'period' => 'month']) }}"
                                         data-toggle="dropdown" data-i18n="Chat"><i
                                             class="feather icon-activity"></i>月間ランキング</a>
+                                </li>
+                                <li class="" data-menu=""><a class="dropdown-item"
+                                        href="{{ route('dashboard.rank', ['key' => 'follower']) }}"
+                                        data-toggle="dropdown" data-i18n="Analytics"><i
+                                            class="feather icon-activity"></i>総フォロワー数</a>
                                 </li>
                             </ul>
                         </li>
@@ -414,6 +402,11 @@
                                         data-toggle="dropdown" data-i18n="Chat"><i
                                             class="feather icon-activity"></i>月間ランキング</a>
                                 </li>
+                                <li data-menu=""><a class="dropdown-item"
+                                        href="{{ route('dashboard.rank', ['key' => 'heart']) }}"
+                                        data-toggle="dropdown" data-i18n="eCommerce"><i
+                                            class="feather icon-activity"></i>総いいね数</a>
+                                </li>
                             </ul>
                         </li>
                         <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href=""
@@ -429,6 +422,11 @@
                                         href="{{ route('dashboard.subrank', ['key' => 'music', 'period' => 'month']) }}"
                                         data-toggle="dropdown" data-i18n="Chat"><i
                                             class="feather icon-activity"></i>月間ランキング</a>
+                                </li>
+                                <li data-menu="" class=""><a class=" dropdown-item"
+                                        href="{{ route('dashboard.rank', ['key' => 'music']) }}"
+                                        data-toggle="dropdown" data-i18n="eCommerce"><i
+                                            class="feather icon-activity"></i>総楽曲数</a>
                                 </li>
                             </ul>
                         </li>
@@ -485,7 +483,16 @@
 
         <!-- BEGIN: Footer-->
         <footer class="footer footer-static footer-light navbar-shadow">
-            <a href="{{ route('contact.index') }}">お問い合わせはこちら</a>
+            <ul class="d-md-flex d-sm-block justify-content-between list-style-icons">
+                <li><a href="{{ route('dashboard') }}" class="text-dark">ホーム</a></li>
+                <li><a href="{{ route('about') }}" class="text-dark">TikTok通とは</a></li>
+                <li><a href="{{ route('media') }}" class="text-dark">メディア実績</a></li>
+                <li><a href="{{ route('term') }}" class="text-dark">利用規約</a></li>
+                <li><a href="{{ route('privacy') }}" class="text-dark">プライバシーポリシー</a></li>
+                <li><a href="{{ route('company') }}" class="text-dark">運営会社</a></li>
+                <li><a href="{{ route('contact.index') }}" class="text-dark">お問い合わせ</a></li>
+            </ul>
+
             <p class="clearfix blue-grey lighten-2 mb-0"><span class="d-block d-md-inline-block mt-25">COPYRIGHT
                     &copy;2021
                     <a class="text-bold-800 grey darken-2" href="#">WEBSTYLE,Inc.

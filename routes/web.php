@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', 'DashboardController@index')->name('dashboard');
-Route::get('/rank/{key}/{period}', 'DashboardController@index')->name('dashboard.subrank');
-Route::get('/rank/{key}', 'DashboardController@index')->name('dashboard.rank');
-Route::get('/category/{category}', 'DashboardController@index')->name('dashboard.category');
+Route::get('/rank/{key}/{period}', 'DashboardController@ranking')->name('dashboard.subrank');
+Route::get('/rank/{key}', 'DashboardController@ranking')->name('dashboard.rank');
+Route::get('/category/{category}', 'DashboardController@category')->name('dashboard.category');
 Route::get('/user/{user}', 'DashboardController@index')->name('user');
 
 Route::post('api/front/getusers', 'DashboardController@getUsersInFrontPage');
@@ -39,6 +39,12 @@ Route::post('/trend/recent', 'TrendController@recent')->name('trend.recent');
 Route::get('/contact', 'ContactController@index')->name('contact.index');
 Route::post('/contact/send', 'ContactController@send')->name('contact.send');
 
+Route::get('/about', 'SupportController@about')->name('about');
+Route::get('/media', 'SupportController@media')->name('media');
+Route::get('/terms', 'SupportController@term')->name('term');
+Route::get('/privacy', 'SupportController@privacy')->name('privacy');
+Route::get('/company', 'SupportController@company')->name('company');
+
 Route::get('/logout', function() {
     Auth::logout();
     return redirect()->route('login');
@@ -52,6 +58,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/news/post', 'NewsController@post')->name('news.post');
     Route::post('/admin/news/upload', 'NewsController@upload')->name('news.upload');
     Route::post('/admin/news/save', 'NewsController@save')->name('news.save');
+    Route::post('/admin/news/update', 'NewsController@update')->name('news.update');
+    Route::get('/admin/news/edit/{id}', 'NewsController@edit')->name('news.edit');
     Route::post('api/newslist', 'NewsController@newslist');
     Route::get('api/deletenews/{id}', 'NewsController@deletetiktok');
 

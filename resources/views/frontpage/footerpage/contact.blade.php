@@ -37,7 +37,7 @@
                 </div>
                 <div class="col-lg-12">
                     <form method="post" action="{{ route('contact.send') }}" enctype="multipart/form-data">
-                        <h1 class="text-center mb-3 text-primary">お問い合わせ</h1>
+                        <h1 class="text-center mt-3 mb-2 text-primary">お問い合わせ</h1>
                         @csrf
                         @if ($errors->any())
                             <div class="card-body">
@@ -102,7 +102,7 @@
                             </div>
                         </div>
 
-                        <div class="text-center mt-3">
+                        <div class="text-center mt-2 mb-3">
                             <button id="submit" type="submit" class="btn btn-primary"><span
                                     class="fa fa-save"></span>&nbsp;送信</button>&nbsp;
                         </div>
