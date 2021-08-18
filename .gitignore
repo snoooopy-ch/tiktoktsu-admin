@@ -12,3 +12,4 @@ npm-debug.log
 yarn-error.log
 .vscode
 composer.lock
+/resources/views/frontpage/footerpage/media.blade.php

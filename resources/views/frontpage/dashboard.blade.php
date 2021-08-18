@@ -30,6 +30,48 @@
 
     <div class="content-body">
         <div class="card card-body" style="margin-left: 5px; margin-right: 5px;">
+            <div id="dashboard-btngroup-pc" class="btn-group mb-1" role="group" aria-label="Basic example">
+                <button type="button" data-order="follower" data-period="week"
+                    class="btn btn-outline-light waves-effect waves-light btn-group-item"><i
+                        class="feather icon-users"></i>&nbsp;周間フォロワー数</button>
+                <button type="button" data-order="follower" data-period="month"
+                    class="btn btn-outline-light waves-effect waves-light btn-group-item"><i
+                        class="feather icon-users"></i>&nbsp;月間フォロワー数</button>
+                <button type="button" data-order="follower" data-period=""
+                    class="btn btn-outline-light waves-effect waves-light btn-group-item"><i
+                        class="feather icon-users"></i>&nbsp;総フォロワー数</button>
+                <button type="button" data-order="heart" data-period="week"
+                    class="btn btn-outline-light waves-effect waves-light btn-group-item"><i
+                        class="feather icon-heart"></i>&nbsp;周間いいね数</button>
+                <button type="button" data-order="heart" data-period="month"
+                    class="btn btn-outline-light waves-effect waves-light btn-group-item"><i
+                        class="feather icon-heart"></i>&nbsp;月間いいね数</button>
+                <button type="button" data-order="heart" data-period=""
+                    class="btn btn-outline-light waves-effect waves-light btn-group-item"><i
+                        class="feather icon-heart"></i>&nbsp;総間いいね数</button>
+            </div>
+            <div id="dashboard-btngroup-sp" class="btn-group mb-1" role="group" aria-label="Basic example">
+                <button type="button" data-order="follower" data-period="week"
+                    class="btn btn-outline-light waves-effect waves-light btn-group-item"><i
+                        class="feather icon-users"></i>&nbsp;周間フォロワー数</button>
+                <button type="button" data-order="follower" data-period="month"
+                    class="btn btn-outline-light waves-effect waves-light btn-group-item"><i
+                        class="feather icon-users"></i>&nbsp;月間フォロワー数</button>
+                <button type="button" data-order="follower" data-period=""
+                    class="btn btn-outline-light waves-effect waves-light btn-group-item"><i
+                        class="feather icon-users"></i>&nbsp;総フォロワー数</button>
+            </div>
+            <div id="dashboard-btngroup-sp" class="btn-group mb-1" role="group" aria-label="Basic example">
+                <button type="button" data-order="heart" data-period="week"
+                    class="btn btn-outline-light waves-effect waves-light btn-group-item"><i
+                        class="feather icon-heart"></i>&nbsp;周間いいね数</button>
+                <button type="button" data-order="heart" data-period="month"
+                    class="btn btn-outline-light waves-effect waves-light btn-group-item"><i
+                        class="feather icon-heart"></i>&nbsp;月間いいね数</button>
+                <button type="button" data-order="heart" data-period=""
+                    class="btn btn-outline-light waves-effect waves-light btn-group-item"><i
+                        class="feather icon-heart"></i>&nbsp;総間いいね数</button>
+            </div>
             <div class="table table-no-border table-striped table-responsive position-relative">
                 <table id="userpage-list" class="table table-striped">
                     <thead class="d-none">
@@ -38,27 +80,6 @@
                         <tr></tr>
                     </tbody>
                 </table>
-
-                <div class="btn-group position-absolute" role="group" aria-label="Basic example" style="top: 0; right: 0;">
-                    <button type="button" data-order="follower" data-period="week"
-                        class="btn btn-outline-light waves-effect waves-light btn-group-item"><i
-                            class="feather icon-users"></i>&nbsp;周</button>
-                    <button type="button" data-order="follower" data-period="month"
-                        class="btn btn-outline-light waves-effect waves-light btn-group-item"><i
-                            class="feather icon-users"></i>&nbsp;月</button>
-                    <button type="button" data-order="follower" data-period=""
-                        class="btn btn-outline-light waves-effect waves-light btn-group-item"><i
-                            class="feather icon-users"></i>&nbsp;総</button>
-                    <button type="button" data-order="heart" data-period="week"
-                        class="btn btn-outline-light waves-effect waves-light btn-group-item"><i
-                            class="feather icon-heart"></i>&nbsp;周</button>
-                    <button type="button" data-order="heart" data-period="month"
-                        class="btn btn-outline-light waves-effect waves-light btn-group-item"><i
-                            class="feather icon-heart"></i>&nbsp;月</button>
-                    <button type="button" data-order="heart" data-period=""
-                        class="btn btn-outline-light waves-effect waves-light btn-group-item"><i
-                            class="feather icon-heart"></i>&nbsp;総</button>
-                </div>
             </div>
 
             @include('frontpage.footer')

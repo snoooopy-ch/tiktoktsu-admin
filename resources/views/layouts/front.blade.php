@@ -431,7 +431,7 @@
                                 <li data-menu="" class=""><a class=" dropdown-item"
                                         href="{{ route('dashboard.rank', ['key' => 'music']) }}"
                                         data-toggle="dropdown" data-i18n="eCommerce"><i
-                                            class="feather icon-activity"></i>総楽曲数</a>
+                                            class="feather icon-activity"></i>総動画投稿数</a>
                                 </li>
                             </ul>
                         </li>

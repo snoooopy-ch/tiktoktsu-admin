@@ -119,8 +119,29 @@ h6.term-header span {
     border-bottom: 3px solid #e91e63;
 }
 
+#dash-btn-group {
+	position: absolute;
+}
+
+#dashboard-btngroup-pc {
+	display: flex;
+}
+#dashboard-btngroup-sp {
+	display: none;
+}
 @media (max-width: 992px) {
 	.container1000 {
 		width: 100%;
+	}
+
+	#dash-btn-group {
+		position: relative;
+	}
+
+	#dashboard-btngroup-pc {
+		display: none;
+	}
+	#dashboard-btngroup-sp {
+		display: flex;
 	}
 }

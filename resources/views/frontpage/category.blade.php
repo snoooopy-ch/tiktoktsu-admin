@@ -23,16 +23,8 @@
     <div class="content-body">
         <div class="card card-body" style="margin-left: 5px; margin-right: 5px;">
             <h4 class="card-title font-weight-bold">@yield('title')</h4>
-            <div class="table table-no-border table-striped table-responsive position-relative">
-                <table id="userpage-list" class="table table-striped">
-                    <thead class="d-none">
-                    </thead>
-                    <tbody>
-                        <tr></tr>
-                    </tbody>
-                </table>
-
-                <div class="btn-group position-absolute" role="group" aria-label="Basic example" style="top: 0; right: 0;">
+            <div class="table table-no-border table-striped table-responsive">
+                <div class="btn-group mb-1" role="group" aria-label="Basic example">
                     <button type="button" id="order-foller" data-order="follercount"
                         class="btn btn-outline-light waves-effect waves-light btn-group-item">フォロワー数順</button>
                     <button type="button" id="order-like" data-order="heart"
@@ -40,6 +32,14 @@
                     <button type="button" id="order-video" data-order="videocount"
                         class="btn btn-outline-light waves-effect waves-light btn-group-item">動画投稿数順</button>
                 </div>
+
+                <table id="userpage-list" class="table table-striped">
+                    <thead class="d-none">
+                    </thead>
+                    <tbody>
+                        <tr></tr>
+                    </tbody>
+                </table>
             </div>
 
             @include('frontpage.footer')
