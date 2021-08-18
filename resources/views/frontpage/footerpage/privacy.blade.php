@@ -15,7 +15,7 @@
     <div class="content-body">
         <div class="card">
             <div class="card-header">
-                <h1 class="text-center mt-3 mb-2 text-primary mr-auto ml-auto">利用規約</h1>
+                <h1 class="text-center mt-3 mb-2 text-primary mr-auto ml-auto">プライバシーポリシー</h1>
             </div>
             <div class="card-body">
                 <p>TikTok通（以下「運営」といいます）では、運営の提供するサービスをご利用されるユーザーの個人情報の取扱について以下のとおり定め、個人情報の保護に努めてまいります。</p>

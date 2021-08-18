@@ -11,7 +11,12 @@
     <meta name="keywords"
         content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>@yield('title')&nbsp;|&nbsp;{{ env('APP_NAME') }}</title>
+    @if (trim($__env->yieldContent('title')))
+        <title>@yield('title')&nbsp;|&nbsp;{{ env('APP_NAME') }}</title>
+    @else
+        <title>{{ env('APP_NAME') }}</title>
+    @endif
+
     <link rel="apple-touch-icon" href="{{ cAsset('app-assets/images/ico/apple-icon-120.png') }}">
     <link rel="shortcut icon" type="image/x-icon" href="{{ cAsset('favicon.png') }}">
 

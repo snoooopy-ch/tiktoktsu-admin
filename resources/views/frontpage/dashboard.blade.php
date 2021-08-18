@@ -11,7 +11,6 @@
             display: none;
         }
 
-
         .swiper-button-next,
         .swiper-button-prev {
             top: 50px;
