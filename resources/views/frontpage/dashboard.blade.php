@@ -80,7 +80,7 @@
                             <h5 class="text-bold-400 mb-0"><a class="news-list-title text-dark"
                                     href="{{ route('posts.view', ['id' => $item->id]) }}">{{ $item->title }}</a>
                             </h5>
-                            <span class="m-0">{{ $item->created_at }}</span>
+                            <span class="m-0">{{ date('Y:m:d', strtotime($item->created_at)) }}</span>
                             <span class="text-white badge badge-info">{{ $item->category }}</span>
                         </div>
                     </li>
