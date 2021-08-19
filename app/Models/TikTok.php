@@ -258,7 +258,7 @@ class TikTok extends Authenticatable
         $selector = DB::table($this->table)
             ->leftJoin($this->dailyTable, $this->table . '.id', '=', $this->dailyTable . '.user_id')
             ->where($this->table . '.id', $params['id'])
-            ->whereBetween($this->table . '.created_at', $params['period'])
+            ->whereBetween($this->dailyTable . '.created_at', $params['period'])
             ->groupBy(
                 DB::raw('Year(tbl_user_daily.created_at), Month(tbl_user_daily.created_at), Day(tbl_user_daily.created_at)')
             )
