@@ -18,7 +18,7 @@
                 <div class="col-12">
                     @if ($errors->any())
                         <div class="card-body">
-                            <div class="alert alert-danger　alert-dismissible fade show">
+                            <div class="alert alert-danger alert-dismissible fade show">
                                 <button type="button" class="close" data-dismiss="alert">×</button>
                                 <ul class="m-0">
                                     @foreach ($errors->all() as $error)

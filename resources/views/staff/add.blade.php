@@ -65,12 +65,12 @@
                             <label class="col-form-label col-sm-2 text-sm-right"><span
                                     class="text-danger">*</span>{{ trans('staff.table.role') }}</label>
                             <div class="col-sm-10">
-                                <div class="col-form-label col-sm-2 text-sm-right　custom-control custom-checkbox">
+                                <div class="col-form-label col-sm-2 text-sm-right custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" checked="" name="customCheck[]"
                                         value="admin" id="role_admin">
                                     <label class="custom-control-label" for="role_admin">管理者</label>
                                 </div>
-                                <div class="col-form-label col-sm-2 text-sm-right　custom-control custom-checkbox">
+                                <div class="col-form-label col-sm-2 text-sm-right custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" checked="" name="customCheck[]"
                                         value="writer" id="role_writer">
                                     <label class="custom-control-label" for="role_writer">投稿者</label>
