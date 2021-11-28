@@ -122,7 +122,7 @@ class TikTok extends Authenticatable
         }
         
         if ($key !== ''){
-            $selector->orderBy('tbl_user.' . $key, 'desc');
+            $selector->orderBy($key, 'desc');
         } else {
             if (isset($params['order']) && $params['order'] != null && $params['order'] != '') {
                 
