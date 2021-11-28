@@ -45,8 +45,8 @@ class TikTok extends Authenticatable
 
     // In both of front and admin page, this is called.
     public function getAllForDatatable($params) {
-        $selector = DB::table($this->table)
-            ->leftJoin($this->dailyTable, $this->table . '.id', '=', $this->dailyTable . '.user_id')
+        $selector = DB::table($this->dailyTable)
+            ->leftJoin($this->table, $this->table . '.id', '=', $this->dailyTable . '.user_id')
             ->groupBy($this->table . '.id')
             ->select(
                 $this->table . '.*',
@@ -59,23 +59,23 @@ class TikTok extends Authenticatable
             );
 
         if (isset($params['columns'][2]['search']['value']) && $params['columns'][2]['search']['value'] !== '' ) {
-            $selector->where('uniqueId', 'like', '%' . $params['columns'][2]['search']['value'] . '%');
+            $selector->where('tbl_user.uniqueId', 'like', '%' . $params['columns'][2]['search']['value'] . '%');
         }
 
         if (isset($params['columns'][10]['search']['value']) && $params['columns'][10]['search']['value'] !== '' ) {
-            $selector->where('status', $params['columns'][10]['search']['value']);
+            $selector->where('tbl_user.status', $params['columns'][10]['search']['value']);
         }
 
         if (isset($params['status']) && $params['status'] != null && $params['status'] != '') {
-            $selector->where('status', $params['status']);
+            $selector->where('tbl_user.status', $params['status']);
         }
 
         if (isset($params['user']) && $params['user'] != null && $params['user'] != '') {
-            $selector->where('uniqueId', 'like', '%' . $params['user'] . '%');
+            $selector->where('tbl_user.uniqueId', 'like', '%' . $params['user'] . '%');
         }
 
         if (isset($params['category']) && $params['category'] != null && $params['category'] != '') {
-            $selector->where('category', $params['category']);
+            $selector->where('tbl_user.category', $params['category']);
         }
 
         // filtering
@@ -122,13 +122,13 @@ class TikTok extends Authenticatable
         }
         
         if ($key !== ''){
-            $selector->orderBy($key, 'desc');
+            $selector->orderBy('tbl_user.' . $key, 'desc');
         } else {
             if (isset($params['order']) && $params['order'] != null && $params['order'] != '') {
                 
             }
             else {
-                $selector->orderBy('follercount', 'desc');
+                $selector->orderBy('tbl_user.follercount', 'desc');
             }
         }
 
