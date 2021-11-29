@@ -36,7 +36,9 @@ class DetailController extends Controller
 
         $titkok = TikTok::where('status', 1)->get();
 
-        $trends = Tiktok::trends($id);
+        $firstTrend = date('Y-m-d', strtotime('now -1 month'));
+        $endTrend = date('Y-m-d', strtotime('now'));
+        $trends = Tiktok::trends($id, $firstTrend, $endTrend);
 
         if ($tiktokInfo->heart == 0) {
             $rate = Decimal::create(0);

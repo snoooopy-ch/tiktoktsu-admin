@@ -201,9 +201,10 @@ class TikTok extends Authenticatable
         return $records[0];
     }
 
-    public static function trends($id) {
+    public static function trends($id, $start, $end) {
         $records = DB::table('tbl_user_daily')
             ->where('user_id', $id)
+            ->whereBetween('tbl_user_daily.created_at', [$start, $end])
             ->groupBy('day')
             ->select(
                 DB::raw('sum(follercount_grow) as foller'),
@@ -211,7 +212,6 @@ class TikTok extends Authenticatable
                 DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d') as day")
             )
             ->orderBy('created_at', 'asc')
-            ->latest()
             ->take(30)
             ->get();
         

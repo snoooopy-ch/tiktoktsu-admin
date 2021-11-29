@@ -326,6 +326,11 @@
                 title: {
                     display: true,
                     text: '{{ $tiktokInfo->nickname }}のフォロワー数と全ハート（いいね）数の日別の推移グラフです。'
+                },
+                elements: {
+                    point: {
+                        radius: 0
+                    }
                 }
             };
 
