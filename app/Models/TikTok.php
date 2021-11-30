@@ -48,6 +48,7 @@ class TikTok extends Authenticatable
         $selector = DB::table($this->dailyTable)
             ->leftJoin($this->table, $this->table . '.id', '=', $this->dailyTable . '.user_id')
             ->groupBy($this->table . '.id')
+            ->whereNotNull($this->table . '.uniqueId')
             ->select(
                 $this->table . '.*',
                 DB::raw('sum(tbl_user_daily.follercount_grow) as follercount_grow'),
